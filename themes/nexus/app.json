@@ -1,23 +1,25 @@
 {
-    "name": "Nexus Theme",
+    "name": "SEPEHR Theme",
     "id": "nexus",
-    "version": "1.0.0",
-    "description": "A modern Material Design theme with RTL support and Persian language optimization",
-    "author": "Nexus Cloud Team",
+    "version": "2.0.0",
+    "description": "SEPEHR Material Design theme with RTL support and Persian language optimization - featuring green/teal color palette",
+    "author": "SEPEHR Cloud Team",
     "license": "AGPL-3.0-or-later",
-    "homepage": "https://nexuscloud.ir",
-    "repository": "https://github.com/nexuscloud/nextcloud-theme",
+    "homepage": "https://sepehrcloud.ir",
+    "repository": "https://github.com/sepehrcloud/nextcloud-theme",
     "support": {
-        "email": "support@nexuscloud.ir",
-        "docs": "https://docs.nexuscloud.ir"
+        "email": "support@sepehrcloud.ir",
+        "docs": "https://docs.sepehrcloud.ir"
     },
     "features": [
         "Material Design 3",
         "RTL Support",
         "Persian Language",
+        "Green/Teal Color Palette",
         "Responsive Design",
         "Accessibility",
-        "Dark Mode Support"
+        "Dark Mode Support",
+        "Enhanced Navigation"
     ],
     "compatibility": {
         "nextcloud": ">=25.0.0",

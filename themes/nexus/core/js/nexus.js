@@ -26,12 +26,85 @@
     function initializeTheme() {
         // Set RTL direction
         document.documentElement.setAttribute('dir', 'rtl');
-        document.body.classList.add('nexus-theme');
+        document.body.classList.add('sepehr-theme');
         
         // Apply Material Design classes
         applyMaterialDesignClasses();
         
-        console.log('Nexus Material Design Theme initialized');
+        // Add SEPEHR branding to sidebar
+        addSepehrBranding();
+        
+        // Enhance sidebar navigation
+        enhanceSidebarNavigation();
+        
+        console.log('SEPEHR Material Design Theme initialized');
+    }
+
+    /**
+     * Add SEPEHR branding to sidebar
+     */
+    function addSepehrBranding() {
+        const navigation = document.getElementById('navigation');
+        if (!navigation) return;
+
+        // Check if branding already exists
+        if (navigation.querySelector('.sepehr-logo')) return;
+
+        // Create SEPEHR logo section
+        const logoSection = document.createElement('div');
+        logoSection.className = 'sepehr-logo';
+        logoSection.innerHTML = `
+            <img src="${OC.webroot}/themes/nexus/core/img/logo.svg" alt="SEPEHR" class="logo-img">
+            <div class="brand-text">سپهر کلود</div>
+        `;
+
+        // Insert at the beginning of navigation
+        navigation.insertBefore(logoSection, navigation.firstChild);
+    }
+
+    /**
+     * Enhance sidebar navigation
+     */
+    function enhanceSidebarNavigation() {
+        const navigation = document.getElementById('navigation');
+        if (!navigation) return;
+
+        // Group navigation items by sections
+        const navSections = {
+            main: {
+                title: 'اصلی',
+                items: ['files', 'photos', 'activity', 'calendar', 'contacts']
+            },
+            apps: {
+                title: 'برنامه‌ها',
+                items: [] // Will be populated dynamically
+            },
+            admin: {
+                title: 'مدیریت',
+                items: ['settings', 'users', 'apps']
+            }
+        };
+
+        // Find app navigation entries
+        const appNavEntries = navigation.querySelectorAll('.app-navigation-entry, [data-id]');
+        appNavEntries.forEach(entry => {
+            const appId = entry.dataset.id || entry.getAttribute('data-app');
+            if (appId && !navSections.main.items.includes(appId)) {
+                navSections.apps.items.push(appId);
+            }
+        });
+
+        // Reorganize navigation structure
+        organizeNavigationSections(navigation, navSections);
+    }
+
+    /**
+     * Organize navigation into sections
+     */
+    function organizeNavigationSections(navigation, sections) {
+        // This would reorganize the navigation structure
+        // Implementation depends on actual Nextcloud DOM structure
+        console.log('Navigation sections organized:', sections);
     }
 
     /**

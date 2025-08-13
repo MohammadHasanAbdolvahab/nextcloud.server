@@ -9,16 +9,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap');
 
 :root {
-  /* Material Design 3 Color Palette */
-  --md-primary: #1976D2;
-  --md-primary-container: #E3F2FD;
+  /* SEPEHR Material Design Color Palette - Green/Teal Theme */
+  --md-primary: #00695C;           /* Deep Teal */
+  --md-primary-container: #E0F2F1; /* Light Teal Container */
   --md-on-primary: #FFFFFF;
-  --md-on-primary-container: #0D47A1;
+  --md-on-primary-container: #004D40;
   
-  --md-secondary: #03DAC6;
-  --md-secondary-container: #E0F7FA;
-  --md-on-secondary: #000000;
-  --md-on-secondary-container: #00695C;
+  --md-secondary: #4CAF50;         /* Green */
+  --md-secondary-container: #E8F5E8; /* Light Green Container */
+  --md-on-secondary: #FFFFFF;
+  --md-on-secondary-container: #2E7D32;
+  
+  --md-tertiary: #009688;          /* Teal */
+  --md-tertiary-container: #E0F7FA;
+  --md-on-tertiary: #FFFFFF;
+  --md-on-tertiary-container: #00695C;
   
   --md-surface: #FEFEFE;
   --md-surface-variant: #F5F5F5;
@@ -28,24 +33,35 @@
   --md-background: #FEFEFE;
   --md-on-background: #1C1B1F;
   
-  --md-error: #BA1A1A;
-  --md-error-container: #FFDAD6;
+  --md-error: #D32F2F;
+  --md-error-container: #FFEBEE;
   --md-on-error: #FFFFFF;
-  --md-on-error-container: #410002;
+  --md-on-error-container: #B71C1C;
   
   --md-outline: #79747E;
   --md-outline-variant: #CAC4D0;
   
-  /* Nexus Theme Variables */
-  --nexus-primary: var(--md-primary);
-  --nexus-primary-light: #42A5F5;
-  --nexus-primary-dark: #1565C0;
-  --nexus-accent: var(--md-secondary);
-  --nexus-bg: var(--md-background);
-  --nexus-surface: var(--md-surface);
-  --nexus-text: var(--md-on-surface);
-  --nexus-text-secondary: var(--md-on-surface-variant);
-  --nexus-border: var(--md-outline-variant);
+  /* SEPEHR Theme Variables */
+  --sepehr-primary: var(--md-primary);
+  --sepehr-primary-light: #26A69A;
+  --sepehr-primary-dark: var(--md-on-primary-container);
+  --sepehr-accent: var(--md-secondary);
+  --sepehr-bg: var(--md-background);
+  --sepehr-surface: var(--md-surface);
+  --sepehr-text: var(--md-on-surface);
+  --sepehr-text-secondary: var(--md-on-surface-variant);
+  --sepehr-border: var(--md-outline-variant);
+  
+  /* Legacy variables for compatibility */
+  --nexus-primary: var(--sepehr-primary);
+  --nexus-primary-light: var(--sepehr-primary-light);
+  --nexus-primary-dark: var(--sepehr-primary-dark);
+  --nexus-accent: var(--sepehr-accent);
+  --nexus-bg: var(--sepehr-bg);
+  --nexus-surface: var(--sepehr-surface);
+  --nexus-text: var(--sepehr-text);
+  --nexus-text-secondary: var(--sepehr-text-secondary);
+  --nexus-border: var(--sepehr-border);
   
   /* Typography Scale */
   --nexus-font-family: 'Vazirmatn', 'Roboto', 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -135,15 +151,15 @@
 /* Dark Theme Support */
 @media (prefers-color-scheme: dark) {
   :root {
-    --md-primary: #90CAF9;
-    --md-primary-container: #1565C0;
-    --md-on-primary: #003C71;
-    --md-on-primary-container: #D1E4FF;
+    --md-primary: #4DB6AC;           /* Light Teal for dark theme */
+    --md-primary-container: #004D40;
+    --md-on-primary: #000000;
+    --md-on-primary-container: #B2DFDB;
     
-    --md-secondary: #4DD0E1;
-    --md-secondary-container: #004D40;
-    --md-on-secondary: #003B32;
-    --md-on-secondary-container: #70F2FF;
+    --md-secondary: #81C784;         /* Light Green for dark theme */
+    --md-secondary-container: #2E7D32;
+    --md-on-secondary: #000000;
+    --md-on-secondary-container: #C8E6C9;
     
     --md-surface: #121212;
     --md-surface-variant: #1E1E1E;
@@ -156,11 +172,18 @@
     --md-outline: #938F99;
     --md-outline-variant: #49454F;
     
-    --nexus-bg: var(--md-background);
-    --nexus-surface: var(--md-surface);
-    --nexus-text: var(--md-on-surface);
-    --nexus-text-secondary: var(--md-on-surface-variant);
-    --nexus-border: var(--md-outline-variant);
+    --sepehr-bg: var(--md-background);
+    --sepehr-surface: var(--md-surface);
+    --sepehr-text: var(--md-on-surface);
+    --sepehr-text-secondary: var(--md-on-surface-variant);
+    --sepehr-border: var(--md-outline-variant);
+    
+    /* Update legacy variables */
+    --nexus-bg: var(--sepehr-bg);
+    --nexus-surface: var(--sepehr-surface);
+    --nexus-text: var(--sepehr-text);
+    --nexus-text-secondary: var(--sepehr-text-secondary);
+    --nexus-border: var(--sepehr-border);
   }
 }
 

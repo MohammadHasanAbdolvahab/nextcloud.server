@@ -28,42 +28,42 @@ class OC_Theme {
      * Returns the theme title
      */
     public function getTitle() {
-        return 'نکسوس کلود'; // Nexus Cloud in Persian
+        return 'سپهر کلود'; // SEPEHR Cloud in Persian
     }
 
     /**
      * Returns the short name of the theme
      */
     public function getName() {
-        return 'نکسوس'; // Nexus in Persian
+        return 'سپهر'; // SEPEHR in Persian
     }
 
     /**
      * Returns the theme entity
      */
     public function getEntity() {
-        return 'نکسوس کلود'; // Nexus Cloud in Persian
+        return 'سپهر کلود'; // SEPEHR Cloud in Persian
     }
 
     /**
      * Returns the theme slogan
      */
     public function getSlogan() {
-        return 'ابری امن و مدرن'; // Safe and Modern Cloud in Persian
+        return 'ابری امن و هوشمند'; // Safe and Smart Cloud in Persian
     }
 
     /**
      * Returns the short footer text
      */
     public function getShortFooter() {
-        return 'نکسوس کلود - ابری امن برای همه';
+        return 'سپهر کلود - ابری امن برای همه';
     }
 
     /**
      * Returns the long footer text
      */
     public function getLongFooter() {
-        return 'نکسوس کلود - پلتفرم ابری امن و مدرن با پشتیبانی کامل از زبان فارسی و طراحی راست‌چین';
+        return 'سپهر کلود - پلتفرم ابری امن و هوشمند با پشتیبانی کامل از زبان فارسی و طراحی راست‌چین';
     }
 
     /**
@@ -77,7 +77,7 @@ class OC_Theme {
      * Returns the primary color
      */
     public function getColorPrimary() {
-        return '#1976D2'; // Material Blue
+        return '#00695C'; // Deep Teal
     }
 
     /**
@@ -98,14 +98,14 @@ class OC_Theme {
      * Returns the theme version
      */
     public function getVersion() {
-        return '1.0.0';
+        return '2.0.0';
     }
 
     /**
      * Returns the theme edition
      */
     public function getEdition() {
-        return 'Material Design RTL Edition';
+        return 'SEPEHR Material Design RTL Edition';
     }
 
     /**

@@ -1,6 +1,7 @@
 {
-    "nextcloud.server": "نکسوس کلود",
+    "nextcloud.server": "سپهر کلود",
     "welcome": "خوش آمدید",
+    "welcome_to": "به سپهر کلود خوش آمدید",
     "login": "ورود",
     "logout": "خروج",
     "username": "نام کاربری",
