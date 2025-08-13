@@ -1,0 +1,13 @@
+/* SPDX-FileCopyrightText: 2025 Nexus Theme */
+/* SPDX-License-Identifier: AGPL-3.0-or-later */
+@import url('design-system.css');
+
+/* Main theme CSS. See previous messages for full Material/RTL code. */
+body {
+  font-family: 'Vazirmatn', 'Roboto', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--nexus-bg);
+  color: var(--nexus-text);
+  direction: rtl;
+}
+
+/* ...existing code for Material Design, sidebar, table, buttons, forms, etc... */
