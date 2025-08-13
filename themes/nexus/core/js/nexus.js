@@ -12,12 +12,12 @@
     // Theme initialization
     document.addEventListener('DOMContentLoaded', function() {
         initializeTheme();
-        setupMobileNavigation();
         setupFileSelection();
         setupMaterialRipple();
         setupTableEnhancements();
         setupFormEnhancements();
         setupNotifications();
+        fixTableHeaderOverlap();
     });
 
     /**
@@ -31,80 +31,41 @@
         // Apply Material Design classes
         applyMaterialDesignClasses();
         
-        // Add SEPEHR branding to sidebar
-        addSepehrBranding();
-        
-        // Enhance sidebar navigation
-        enhanceSidebarNavigation();
-        
         console.log('SEPEHR Material Design Theme initialized');
     }
 
     /**
-     * Add SEPEHR branding to sidebar
+     * Fix table header overlap issues
      */
-    function addSepehrBranding() {
-        const navigation = document.getElementById('navigation');
-        if (!navigation) return;
-
-        // Check if branding already exists
-        if (navigation.querySelector('.sepehr-logo')) return;
-
-        // Create SEPEHR logo section
-        const logoSection = document.createElement('div');
-        logoSection.className = 'sepehr-logo';
-        logoSection.innerHTML = `
-            <img src="${OC.webroot}/themes/nexus/core/img/logo.svg" alt="SEPEHR" class="logo-img">
-            <div class="brand-text">سپهر کلود</div>
-        `;
-
-        // Insert at the beginning of navigation
-        navigation.insertBefore(logoSection, navigation.firstChild);
-    }
-
-    /**
-     * Enhance sidebar navigation
-     */
-    function enhanceSidebarNavigation() {
-        const navigation = document.getElementById('navigation');
-        if (!navigation) return;
-
-        // Group navigation items by sections
-        const navSections = {
-            main: {
-                title: 'اصلی',
-                items: ['files', 'photos', 'activity', 'calendar', 'contacts']
-            },
-            apps: {
-                title: 'برنامه‌ها',
-                items: [] // Will be populated dynamically
-            },
-            admin: {
-                title: 'مدیریت',
-                items: ['settings', 'users', 'apps']
-            }
-        };
-
-        // Find app navigation entries
-        const appNavEntries = navigation.querySelectorAll('.app-navigation-entry, [data-id]');
-        appNavEntries.forEach(entry => {
-            const appId = entry.dataset.id || entry.getAttribute('data-app');
-            if (appId && !navSections.main.items.includes(appId)) {
-                navSections.apps.items.push(appId);
+    function fixTableHeaderOverlap() {
+        const tables = document.querySelectorAll('#filestable, .files-table');
+        tables.forEach(table => {
+            // Ensure proper spacing
+            if (table.id === 'filestable') {
+                table.style.marginTop = '2rem';
+                
+                // Fix header positioning
+                const thead = table.querySelector('thead');
+                if (thead) {
+                    thead.style.position = 'sticky';
+                    thead.style.top = '0';
+                    thead.style.zIndex = '100';
+                    thead.style.background = 'var(--md-surface-variant)';
+                }
+                
+                // Ensure first row is visible
+                const firstRow = table.querySelector('tbody tr:first-child');
+                if (firstRow) {
+                    firstRow.style.borderTop = 'none';
+                }
             }
         });
-
-        // Reorganize navigation structure
-        organizeNavigationSections(navigation, navSections);
-    }
-
-    /**
-     * Organize navigation into sections
-     */
-    function organizeNavigationSections(navigation, sections) {
-        // This would reorganize the navigation structure
-        // Implementation depends on actual Nextcloud DOM structure
-        console.log('Navigation sections organized:', sections);
+        
+        // Fix app content spacing
+        const appContent = document.querySelector('.app-content-list, .app-content-wrapper');
+        if (appContent) {
+            appContent.style.marginTop = '2rem';
+        }
     }
 
     /**
@@ -144,55 +105,12 @@
     }
 
     /**
-     * Setup mobile navigation
+     * Setup mobile navigation - Removed sidebar code
      */
     function setupMobileNavigation() {
-        const navigation = document.getElementById('navigation');
-        const content = document.getElementById('content');
-        
-        if (!navigation) return;
-
-        // Create mobile toggle button
-        const toggleButton = document.createElement('button');
-        toggleButton.className = 'mobile-nav-toggle';
-        toggleButton.innerHTML = '☰';
-        toggleButton.setAttribute('aria-label', 'Toggle navigation');
-        
-        // Add toggle to header
-        const header = document.getElementById('header') || document.querySelector('.header');
-        if (header) {
-            header.appendChild(toggleButton);
-        }
-
-        // Toggle functionality
-        toggleButton.addEventListener('click', function() {
-            navigation.classList.toggle('show');
-            content?.classList.toggle('navigation-hidden');
-            
-            // Update aria label
-            const isOpen = navigation.classList.contains('show');
-            toggleButton.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
-            toggleButton.innerHTML = isOpen ? '✕' : '☰';
-        });
-
-        // Close navigation when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!navigation.contains(e.target) && !toggleButton.contains(e.target)) {
-                navigation.classList.remove('show');
-                content?.classList.remove('navigation-hidden');
-                toggleButton.innerHTML = '☰';
-                toggleButton.setAttribute('aria-label', 'Open navigation');
-            }
-        });
-
-        // Handle window resize
-        window.addEventListener('resize', function() {
-            if (window.innerWidth > 768) {
-                navigation.classList.remove('show');
-                content?.classList.remove('navigation-hidden');
-                toggleButton.innerHTML = '☰';
-            }
-        });
+        // Mobile navigation is now handled by Nextcloud's header menu
+        // No custom sidebar needed
+        console.log('Using Nextcloud\'s built-in mobile navigation');
     }
 
     /**
