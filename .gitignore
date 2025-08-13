@@ -60,7 +60,7 @@
 
 
 # ignore themes except the example and the README
-/themes/*
+!/themes/*
 !/themes/example
 !/themes/README
 
@@ -186,3 +186,32 @@ cypress/snapshots
 cypress/videos
 
 /.direnv
+themes/google-drive-rtl/defaults.php
+themes/google-drive-rtl/README.md
+themes/google-drive-rtl/core/css/adminpanel.scss
+themes/google-drive-rtl/core/css/login.scss
+themes/google-drive-rtl/core/css/server.css
+themes/google-drive-rtl/core/css/userpanel.scss
+themes/google-drive-rtl/core/img/background-login.jpg
+themes/google-drive-rtl/core/img/logo.svg
+themes/google-drive-rtl/core/img/icons/readme.txt
+themes/google-drive-rtl/core/l10n/fa.json
+pics/black sepehr.svg
+pics/Screenshot_20250813_230105.png
+pics/sepehr.ico
+pics/white.sepehr.svg
+themes/mytheme/defaults.php
+themes/mytheme/README.md
+themes/mytheme/core/css/accessibility.css
+themes/mytheme/core/css/colors-palette.md
+themes/mytheme/core/css/fonts.css
+themes/mytheme/core/css/rtl.css
+themes/mytheme/core/css/server.css
+themes/mytheme/core/img/bg.jpg
+themes/mytheme/core/img/icon-upload.svg
+themes/mytheme/core/img/logo.svg
+themes/mytheme/core/js/theme.js
+themes/mytheme/l10n/fa.json
+themes/mytheme/templates/adminpanel.php
+themes/mytheme/templates/login.php
+themes/mytheme/templates/userpanel.php

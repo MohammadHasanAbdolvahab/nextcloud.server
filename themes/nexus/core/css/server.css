@@ -352,6 +352,14 @@ tr.selected, .files-table tr.selected {
   background: var(--md-surface-variant) !important;
 }
 
+thead .files-list__thead {
+    background: var(--md-surface-variant) !important;
+}
+
+tbody .files-list__tbody {
+    margin-top: 35px !important;
+}
+
 /* Ensure proper spacing from header */
 .app-content-wrapper,
 .app-content-list {
