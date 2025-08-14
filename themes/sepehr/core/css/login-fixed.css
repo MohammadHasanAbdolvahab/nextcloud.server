@@ -1,0 +1,272 @@
+/* SPDX-FileCopyrightText: 2025 SEPEHR Theme */
+/* SPDX-License-Identifier: AGPL-3.0-or-later */
+
+/**
+ * SEPEHR Login Page Styling
+ * Applies SEPEHR Material Design theme to Nextcloud's Vue.js login components
+ * All styles are scoped to body#body-login to avoid affecting main application
+ */
+
+/* Import design system and fonts */
+@import url('design-system.css');
+
+/* Override body styling for login page ONLY */
+body#body-login {
+    font-family: var(--sepehr-font-family) !important;
+    direction: rtl !important;
+    background: var(--sepehr-gradient-primary) !important;
+    color: var(--sepehr-text) !important;
+    text-align: right !important;
+}
+
+/* Main login wrapper styling */
+body#body-login #login {
+    width: 100% !important;
+    height: 100vh !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: var(--sepehr-gradient-primary) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Login box styling */
+body#body-login .login-box,
+body#body-login .guest-box {
+    background: white !important;
+    border-radius: 16px !important;
+    box-shadow: 0 24px 48px rgba(0, 105, 92, 0.15) !important;
+    padding: 3rem !important;
+    width: 90% !important;
+    max-width: 400px !important;
+    direction: rtl !important;
+    text-align: right !important;
+    border: none !important;
+    position: relative !important;
+}
+
+/* Add SEPEHR logo to login box */
+body#body-login .guest-box::before,
+body#body-login .login-box::before {
+    content: '' !important;
+    display: block !important;
+    width: 80px !important;
+    height: 80px !important;
+    margin: 0 auto 1rem auto !important;
+    background-image: url('/themes/sepehr/core/img/logo.svg') !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+}
+
+/* Header styling */
+body#body-login .guest-box h2,
+body#body-login .login-box h2 {
+    font-family: var(--sepehr-font-headline) !important;
+    color: var(--sepehr-primary) !important;
+    font-size: 2rem !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+    margin-bottom: 0.5rem !important;
+}
+
+/* Add SEPEHR title */
+body#body-login .guest-box h2::before,
+body#body-login .login-box h2::before {
+    content: 'سپهر کلود' !important;
+    display: block !important;
+    font-family: var(--sepehr-font-headline) !important;
+    font-size: 1.75rem !important;
+    font-weight: 800 !important;
+    color: var(--sepehr-primary) !important;
+    text-align: center !important;
+    margin-bottom: 0.5rem !important;
+}
+
+/* Input styling */
+body#body-login .login-form input[type="text"],
+body#body-login .login-form input[type="password"],
+body#body-login .login-form input[type="email"],
+body#body-login input[data-login-form] {
+    width: 100% !important;
+    padding: 1rem 0 !important;
+    border: none !important;
+    border-bottom: 2px solid #e0e0e0 !important;
+    background: transparent !important;
+    font-family: var(--sepehr-font-family) !important;
+    font-size: 1rem !important;
+    direction: rtl !important;
+    text-align: right !important;
+    outline: none !important;
+    transition: all 0.3s ease !important;
+}
+
+body#body-login .login-form input[type="text"]:focus,
+body#body-login .login-form input[type="password"]:focus,
+body#body-login .login-form input[type="email"]:focus,
+body#body-login input[data-login-form]:focus {
+    border-bottom-color: var(--sepehr-primary) !important;
+}
+
+/* Label styling */
+body#body-login .login-form label,
+body#body-login label[for="user"],
+body#body-login label[for="password"] {
+    font-family: var(--sepehr-font-family) !important;
+    color: #666 !important;
+    font-size: 0.875rem !important;
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+/* Button styling */
+body#body-login .login-form input[type="submit"],
+body#body-login .login-form button[type="submit"],
+body#body-login .login-button,
+body#body-login button.primary {
+    width: 100% !important;
+    padding: 1rem !important;
+    background: var(--sepehr-primary) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-family: var(--sepehr-font-family) !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    margin-top: 1.5rem !important;
+}
+
+body#body-login .login-form input[type="submit"]:hover,
+body#body-login .login-form button[type="submit"]:hover,
+body#body-login .login-button:hover,
+body#body-login button.primary:hover {
+    background: #004d40 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 20px rgba(0, 105, 92, 0.3) !important;
+}
+
+/* Checkbox styling */
+body#body-login input[type="checkbox"] {
+    accent-color: var(--sepehr-primary) !important;
+}
+
+/* Link styling */
+body#body-login .guest-box a,
+body#body-login .login-box a {
+    color: var(--sepehr-primary) !important;
+    font-family: var(--sepehr-font-family) !important;
+    text-decoration: none !important;
+    transition: color 0.3s ease !important;
+}
+
+body#body-login .guest-box a:hover,
+body#body-login .login-box a:hover {
+    color: #004d40 !important;
+}
+
+/* Error and success messages */
+body#body-login .message,
+body#body-login .notecard {
+    border-radius: 8px !important;
+    padding: 1rem !important;
+    margin-bottom: 1rem !important;
+    font-family: var(--sepehr-font-family) !important;
+    text-align: center !important;
+    direction: rtl !important;
+}
+
+body#body-login .message.error,
+body#body-login .notecard.error {
+    background: #ffebee !important;
+    color: #c62828 !important;
+    border: 1px solid #ffcdd2 !important;
+}
+
+body#body-login .message.success,
+body#body-login .notecard.success {
+    background: #e8f5e8 !important;
+    color: #2e7d32 !important;
+    border: 1px solid #c8e6c9 !important;
+}
+
+/* Vue.js component specific styling */
+body#body-login .v-input__control,
+body#body-login .v-text-field__slot {
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+body#body-login .v-input input {
+    font-family: var(--sepehr-font-family) !important;
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+/* Override Nextcloud specific classes */
+body#body-login .body-login-container {
+    background: none !important;
+}
+
+/* Logo area customization - only hide on login page */
+body#body-login .header-appname,
+body#body-login #header {
+    display: none !important;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    body#body-login .login-box,
+    body#body-login .guest-box {
+        margin: 1rem !important;
+        padding: 2rem !important;
+        width: calc(100% - 2rem) !important;
+    }
+}
+
+@media (max-width: 480px) {
+    body#body-login .login-box,
+    body#body-login .guest-box {
+        margin: 0.5rem !important;
+        padding: 1.5rem !important;
+        width: calc(100% - 1rem) !important;
+    }
+}
+
+/* Alternative login options */
+body#body-login .login-box__alternative-logins {
+    margin-top: 2rem !important;
+    text-align: center !important;
+}
+
+body#body-login .login-box__alternative-logins button {
+    font-family: var(--sepehr-font-family) !important;
+    direction: rtl !important;
+}
+
+/* Two-factor authentication styling */
+body#body-login .two-factor-header {
+    font-family: var(--sepehr-font-headline) !important;
+    color: var(--sepehr-primary) !important;
+    text-align: center !important;
+}
+
+/* Install/setup page styling */
+body#body-login .body-login-container.update {
+    background: var(--sepehr-gradient-primary) !important;
+}
+
+/* Additional branding elements - only on login page */
+body#body-login .login-box::after,
+body#body-login .guest-box::after {
+    content: 'ابری امن و هوشمند' !important;
+    display: block !important;
+    font-family: var(--sepehr-font-family) !important;
+    font-size: 0.875rem !important;
+    color: #666 !important;
+    text-align: center !important;
+    margin-top: 2rem !important;
+    font-weight: 300 !important;
+}

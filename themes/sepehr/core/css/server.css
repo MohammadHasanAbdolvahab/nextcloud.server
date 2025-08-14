@@ -8,6 +8,7 @@
  */
 
 @import url('design-system.css');
+@import url('login.css');
 
 /* Base Styles */
 * {
@@ -47,6 +48,55 @@ h3 { font-size: var(--sepehr-text-2xl); }
 h4 { font-size: var(--sepehr-text-xl); }
 h5 { font-size: var(--sepehr-text-lg); }
 h6 { font-size: var(--sepehr-text-base); }
+
+/* Header and Navigation Styling */
+#header {
+  background: var(--sepehr-primary) !important;
+  border-bottom: 1px solid var(--sepehr-border) !important;
+  direction: rtl !important;
+}
+
+#header .header-start,
+#header .header-end {
+  direction: rtl !important;
+}
+
+/* Logo styling */
+.logo {
+  background-image: url('../img/logo.svg') !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  /* White logo in menu/header */
+  filter: brightness(0) invert(1) !important;
+}
+
+/* Navigation menu styling */
+.app-navigation {
+  background: var(--sepehr-surface) !important;
+  border-left: 1px solid var(--sepehr-border) !important;
+  direction: rtl !important;
+}
+
+.app-navigation ul {
+  direction: rtl !important;
+}
+
+.app-navigation li a {
+  font-family: var(--sepehr-font-family) !important;
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+/* User menu styling */
+#user-menu {
+  direction: rtl !important;
+}
+
+/* Content area */
+#content {
+  direction: rtl !important;
+  font-family: var(--sepehr-font-family) !important;
+}
 
 p {
   margin: 0 0 var(--sepehr-space-4) 0;
@@ -194,6 +244,8 @@ p {
   background-position: center;
   width: -webkit-fill-available !important;
   height: -webkit-fill-available !important;
+  /* White logo in header */
+  filter: brightness(0) invert(1) !important;
 }
 
 #nextcloud {
@@ -212,26 +264,28 @@ p {
   border-radius: var(--sepehr-radius-lg);
   transition: all var(--sepehr-transition-fast);
   text-decoration: none;
-  color: var(--sepehr-text);
+  color: white !important;
   display: flex;
   align-items: center;
   gap: var(--sepehr-space-2);
 }
 
 #header-start__appmenu .header-appmenu-entry:hover {
-  background: var(--md-primary-container);
-  color: var(--md-on-primary-container);
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: white !important;
+  transform: translateY(-1px);
 }
 
 #header-start__appmenu .header-appmenu-entry.active {
-  background: var(--sepehr-primary);
-  color: var(--md-on-primary);
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: white !important;
 }
 
 #header-start__appmenu .header-appmenu-entry img {
   width: 20px;
   height: 20px;
-  filter: none; /* Prevent icon corruption */
+  filter: brightness(0) invert(1); /* Make icons white */
+  transition: filter var(--sepehr-transition-fast);
 }
 
 /* Header icons fix */
@@ -256,12 +310,12 @@ p {
 }
 
 /* User menu in header */
-#header .header-menu {
+/* #header .header-menu {
   background: var(--sepehr-surface);
   border: 1px solid var(--sepehr-border);
   border-radius: var(--sepehr-radius-lg);
   box-shadow: var(--sepehr-shadow-lg);
-}
+} */
 
 #header .header-menu .menuitem {
   padding: var(--sepehr-space-3) var(--sepehr-space-4);
@@ -358,6 +412,8 @@ tr.selected, .files-table tr.selected {
 
 .breadcrumb__crumbs > li > span > svg {
   rotate: 180deg;
+  fill: var(--sepehr-primary) !important;
+  color: var(--sepehr-primary) !important;
 }
 
 .files-list__thead {
