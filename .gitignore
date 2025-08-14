@@ -196,10 +196,7 @@ themes/google-drive-rtl/core/img/background-login.jpg
 themes/google-drive-rtl/core/img/logo.svg
 themes/google-drive-rtl/core/img/icons/readme.txt
 themes/google-drive-rtl/core/l10n/fa.json
-pics/black sepehr.svg
-pics/Screenshot_20250813_230105.png
-pics/sepehr.ico
-pics/white.sepehr.svg
+pics/*
 themes/mytheme/defaults.php
 themes/mytheme/README.md
 themes/mytheme/core/css/accessibility.css
@@ -215,4 +212,4 @@ themes/mytheme/l10n/fa.json
 themes/mytheme/templates/adminpanel.php
 themes/mytheme/templates/login.php
 themes/mytheme/templates/userpanel.php
-pics/Screenshot_20250813_230105-1.png
+

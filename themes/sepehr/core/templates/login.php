@@ -55,7 +55,7 @@
 
         .login-wrapper {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 25% 75%;
             height: 100vh;
             width: 100vw;
             position: fixed;
@@ -196,7 +196,6 @@
         }
 
         .form-input {
-            width: 100%;
             padding: 1.5rem 1rem 0.5rem 1rem;
             border: 1px solid #e0e0e0;
             border-radius: 4px;
@@ -209,6 +208,8 @@
             color: #333;
             box-sizing: border-box;
             display: block;
+            width: -webkit-fill-available !important;
+
         }
 
         .form-input:focus {
@@ -240,7 +241,7 @@
 
         .form-options {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             align-items: center;
             margin-bottom: 2rem;
             flex-wrap: wrap;
@@ -254,7 +255,8 @@
             font-size: 0.875rem;
             color: #555;
             cursor: pointer;
-            order: 1;
+            line-height: 1;
+            margin-bottom: 1rem;
         }
 
         .remember-me input[type="checkbox"] {
@@ -262,7 +264,32 @@
             height: 18px;
             accent-color: #00695c;
             cursor: pointer;
-            border-radius: 2px;
+            border-radius: 3px;
+            margin: 0;
+            flex-shrink: 0;
+            border: 2px solid #ddd;
+            background: white;
+            position: relative;
+        }
+
+        .remember-me input[type="checkbox"]:checked {
+            background-color: #00695c;
+            border-color: #00695c;
+        }
+
+        .remember-me input[type="checkbox"]:checked::before {
+            content: '✓';
+            position: absolute;
+            top: -2px;
+            left: 2px;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .remember-me span {
+            line-height: 18px;
+            user-select: none;
         }
 
         .forgot-link {
@@ -271,7 +298,6 @@
             font-size: 0.875rem;
             font-weight: 500;
             transition: color 0.2s ease;
-            order: 2;
         }
 
         .forgot-link:hover {
@@ -280,7 +306,7 @@
         }
 
         .login-button {
-            width: 100%;
+            width: 100% !important;
             padding: 1rem;
             background: #00695c;
             color: white;
@@ -357,25 +383,41 @@
         }
 
         /* Responsive Design */
+        @media (max-width: 1200px) {
+            .login-wrapper {
+                grid-template-columns: 65% 35%;
+            }
+        }
+
         @media (max-width: 1024px) {
             .login-wrapper {
-                grid-template-columns: 45% 55%;
+                grid-template-columns: 60% 40%;
             }
             
             .brand-title {
                 font-size: 2.8rem;
+            }
+
+            .form-container {
+                max-width: 320px;
             }
         }
 
         @media (max-width: 768px) {
             .login-wrapper {
                 grid-template-columns: 1fr;
-                grid-template-rows: 35vh 1fr;
+                grid-template-rows: 40vh 60vh;
             }
 
             .brand-section {
                 padding: 1.5rem;
-                min-height: 35vh;
+                min-height: 40vh;
+                order: 1;
+            }
+
+            .form-section {
+                padding: 2rem 1.5rem;
+                order: 2;
             }
 
             .brand-title {
@@ -400,10 +442,6 @@
                 min-width: 80px;
             }
 
-            .form-section {
-                padding: 2rem 1.5rem;
-            }
-
             .form-header {
                 margin-bottom: 2rem;
             }
@@ -416,6 +454,10 @@
                 font-size: 0.9rem;
             }
 
+            .form-container {
+                max-width: 100%;
+            }
+
             .form-options {
                 flex-direction: row;
                 justify-content: space-between;
@@ -425,12 +467,12 @@
 
         @media (max-width: 480px) {
             .login-wrapper {
-                grid-template-rows: 30vh 1fr;
+                grid-template-rows: 35vh 65vh;
             }
 
             .brand-section {
                 padding: 1rem;
-                min-height: 30vh;
+                min-height: 35vh;
             }
 
             .brand-title {
@@ -474,12 +516,10 @@
             }
 
             .remember-me {
-                order: 1;
                 align-self: flex-start;
             }
 
             .forgot-link {
-                order: 2;
                 align-self: flex-start;
             }
 
@@ -489,8 +529,13 @@
         }
 
         @media (max-width: 360px) {
+            .login-wrapper {
+                grid-template-rows: 30vh 70vh;
+            }
+
             .brand-section {
                 padding: 0.75rem;
+                min-height: 30vh;
             }
 
             .form-section {
@@ -503,6 +548,16 @@
 
             .form-input {
                 font-size: 16px; /* Prevent zoom on iOS */
+                padding: 1.25rem 0.75rem 0.5rem 0.75rem;
+            }
+
+            .form-label {
+                right: 0.75rem;
+            }
+
+            .login-button {
+                padding: 0.875rem;
+                font-size: 0.95rem;
             }
         }
     </style>
@@ -553,16 +608,18 @@
                                        class="form-input" 
                                        autocomplete="current-password" />
                                 <label for="password" class="form-label">رمز عبور</label>
-                            </div>                    <div class="form-options">
-                        <label class="remember-me">
-                            <input type="checkbox" name="remember_login" value="1" id="remember_login">
-                            <span>مرا به خاطر بسپار</span>
-                        </label>
-                        <?php if (isset($_['resetPasswordLink']) && $_['resetPasswordLink']): ?>
-                        <a href="<?php print_unescaped($_['resetPasswordLink']); ?>" class="forgot-link">فراموشی رمز عبور</a>
-                        <?php endif; ?>
-                    </div>
-                    
+                            </div>     
+                            <div class="form-group">
+                                <label class="remember-me" for="remember_login">
+                                    <input type="checkbox" name="remember_login" value="1" id="remember_login">
+                                    <span>مرا به خاطر بسپار</span>
+                                </label>
+                            </div>
+                            <div class="form-options">
+                                <?php if (isset($_['resetPasswordLink']) && $_['resetPasswordLink']): ?>
+                                    <a href="<?php print_unescaped($_['resetPasswordLink']); ?>" class="forgot-link">فراموشی رمز عبور</a>
+                                <?php endif; ?>
+                            </div>
                     <button type="submit" class="login-button" id="loginButton">
                         <span>ورود به سپهر</span>
                     </button>
