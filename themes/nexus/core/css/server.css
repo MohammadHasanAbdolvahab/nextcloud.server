@@ -57,7 +57,7 @@ p {
 .button, .btn, button, input[type="submit"], input[type="button"] {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  /*justify-content: center;*/
   gap: var(--nexus-space-2);
   padding: var(--nexus-space-3) var(--nexus-space-6);
   border: none;
@@ -169,10 +169,10 @@ p {
   box-shadow: var(--nexus-shadow-sm);
 }
 
-#header .logo {
+/* #header .logo {
   height: 32px;
   width: auto;
-}
+} */
 
 #header .header-start {
   display: flex;
@@ -192,8 +192,12 @@ p {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  width: 32px;
-  height: 32px;
+  width: -webkit-fill-available !important;
+  height: -webkit-fill-available !important;
+}
+
+#nextcloud {
+    height: -webkit-fill-available !important;
 }
 
 /* Apps Navigation in Header */
@@ -278,7 +282,7 @@ table, .files-table {
   overflow: hidden;
   box-shadow: var(--nexus-shadow-sm);
   margin-bottom: var(--nexus-space-6);
-  margin-top: var(--nexus-space-4);
+  margin-top: var(--nexus-space-1) !important;
 }
 
 thead, .files-table thead {
@@ -302,7 +306,7 @@ th, .files-table th {
   text-transform: uppercase;
   height: 48px;
   line-height: 1.2;
-  background: var(--md-surface-variant);
+  /*background: var(--md-surface-variant);*/
   position: sticky;
   top: 0;
   z-index: var(--nexus-z-10);
@@ -352,8 +356,24 @@ tr.selected, .files-table tr.selected {
   background: var(--md-surface-variant) !important;
 }
 
+.breadcrumb__crumbs > li > span > svg {
+  rotate: 180deg;
+}
+
 .files-list__thead {
-    background: var(--md-surface-variant) !important;
+    background: var(--color-primary-light) !important;
+}
+
+.files-list__thead tr:hover {
+    background: var(--color-primary-light) !important;
+}
+
+.files-list__thead-overlay {
+  margin-bottom: -2rem;
+}
+
+.files-list__tfoot {
+    background: var(--color-primary-light) !important;
 }
 
 .files-list__tbody {
@@ -673,3 +693,13 @@ button:focus, a:focus {
 @media print {
   @import url('print.css');
 }
+
+
+.app-menu__overflow[data-v-7661a89b] .button-vue--vue-tertiary:not([aria-expanded=true]) {
+    color: var(--sepehr-primary) !important;
+}
+
+.app-menu__overflow[data-v-7661a89b] .button-vue--vue-tertiary {
+    filter: none !important;
+}
+
