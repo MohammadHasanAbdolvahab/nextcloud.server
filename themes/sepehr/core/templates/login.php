@@ -93,8 +93,8 @@
         }
 
         .brand-logo {
-            width: 120px;
-            height: 120px;
+            width: 160px;
+            height: 160px;
             margin-bottom: 2rem;
             filter: drop-shadow(0 8px 16px rgba(0,0,0,0.2));
             animation: logoGlow 3s ease-in-out infinite;
@@ -163,30 +163,31 @@
 
         .form-container {
             width: 100%;
-            max-width: 400px;
+            max-width: 350px;
         }
 
         .form-header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
         }
 
         .form-title {
-            font-size: 2rem;
-            font-weight: 700;
+            font-size: 1.75rem;
+            font-weight: 600;
             color: #00695c;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
             font-family: var(--sepehr-font-headline);
         }
 
         .form-subtitle {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: #666;
-            font-weight: 300;
+            font-weight: 400;
+            line-height: 1.4;
         }
 
         .login-form {
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .form-group {
@@ -196,36 +197,45 @@
 
         .form-input {
             width: 100%;
-            padding: 1rem 0;
-            border: none;
-            border-bottom: 2px solid #e0e0e0;
+            padding: 1.5rem 1rem 0.5rem 1rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
             font-size: 1rem;
             font-family: var(--sepehr-font-family);
-            background: transparent;
-            transition: all 0.3s ease;
+            background: #fafafa;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             direction: rtl;
             outline: none;
+            color: #333;
+            box-sizing: border-box;
+            display: block;
         }
 
         .form-input:focus {
-            border-bottom-color: #00695c;
+            border-color: #00695c;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0, 105, 92, 0.1);
         }
 
         .form-input:focus + .form-label,
-        .form-input:not(:placeholder-shown) + .form-label {
-            transform: translateY(-1.5rem) scale(0.875);
+        .form-input.has-value + .form-label {
+            transform: translateY(-1.5rem) scale(0.75);
             color: #00695c;
+            font-weight: 500;
         }
 
         .form-label {
             position: absolute;
             top: 1rem;
-            right: 0;
+            right: 1rem;
             font-size: 1rem;
-            color: #999;
+            color: #666;
             pointer-events: none;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             transform-origin: right top;
+            background: white;
+            padding: 0 0.25rem;
+            z-index: 1;
         }
 
         .form-options {
@@ -233,21 +243,26 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
         .remember-me {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
             font-size: 0.875rem;
-            color: #666;
+            color: #555;
             cursor: pointer;
+            order: 1;
         }
 
         .remember-me input[type="checkbox"] {
             width: 18px;
             height: 18px;
             accent-color: #00695c;
+            cursor: pointer;
+            border-radius: 2px;
         }
 
         .forgot-link {
@@ -255,11 +270,13 @@
             text-decoration: none;
             font-size: 0.875rem;
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: color 0.2s ease;
+            order: 2;
         }
 
         .forgot-link:hover {
             color: #004d40;
+            text-decoration: underline;
         }
 
         .login-button {
@@ -268,39 +285,29 @@
             background: #00695c;
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 4px;
             font-size: 1rem;
-            font-weight: 600;
+            font-weight: 500;
             font-family: var(--sepehr-font-family);
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
-        }
-
-        .login-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: right 0.6s ease;
+            text-align: center;
+            display: block;
+            box-sizing: border-box;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 4px rgba(0, 105, 92, 0.3);
         }
 
         .login-button:hover {
             background: #004d40;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 105, 92, 0.3);
-        }
-
-        .login-button:hover::before {
-            right: 100%;
+            box-shadow: 0 4px 8px rgba(0, 105, 92, 0.4);
         }
 
         .login-button:active {
-            transform: translateY(0);
+            box-shadow: 0 1px 2px rgba(0, 105, 92, 0.2);
         }
 
         /* Messages */
@@ -402,7 +409,17 @@
             }
 
             .form-title {
-                font-size: 1.5rem;
+                font-size: 1.4rem;
+            }
+
+            .form-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .form-options {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
             }
         }
 
@@ -425,8 +442,8 @@
             }
 
             .brand-logo {
-                width: 60px;
-                height: 60px;
+                width: 100px;
+                height: 100px;
                 margin-bottom: 1rem;
             }
 
@@ -443,17 +460,27 @@
             }
 
             .form-title {
-                font-size: 1.3rem;
+                font-size: 1.25rem;
             }
 
             .form-subtitle {
-                font-size: 0.875rem;
+                font-size: 0.85rem;
             }
 
             .form-options {
                 flex-direction: column;
                 gap: 1rem;
                 align-items: flex-start;
+            }
+
+            .remember-me {
+                order: 1;
+                align-self: flex-start;
+            }
+
+            .forgot-link {
+                order: 2;
+                align-self: flex-start;
             }
 
             .brand-features {
@@ -482,29 +509,7 @@
 </head>
 <body>
     <div class="login-wrapper">
-        <!-- Brand Section -->
-        <div class="brand-section">
-            <img src="<?php print_unescaped(OC::$WEBROOT); ?>/themes/sepehr/core/img/logo.svg" alt="<?php p($theme->getTitle()); ?>" class="brand-logo">
-            <h1 class="brand-title"><?php p($theme->getTitle()); ?></h1>
-            <p class="brand-subtitle">پلتفرم ابری پیشرفته برای مدیریت و اشتراک‌گذاری فایل‌ها با امنیت بالا</p>
-            
-            <div class="brand-features">
-                <div class="feature-item">
-                    <div class="feature-icon">🔒</div>
-                    <div>امنیت بالا</div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">☁️</div>
-                    <div>ذخیره ابری</div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">🤝</div>
-                    <div>اشتراک‌گذاری</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Form Section -->
+        <!-- Form Section - Now on RIGHT -->
         <div class="form-section">
             <div class="form-container">
                 <div class="form-header">
@@ -532,17 +537,23 @@
                     <input type="hidden" name="timezone-offset" id="timezone-offset"/>
                     <input type="hidden" name="requesttoken" value="<?php p($_['requesttoken']) ?>">
                     
-                    <div class="form-group">
-                        <input type="text" name="user" id="user" class="form-input" placeholder=" " value="<?php p($_['username']); ?>" <?php p($_['user_autofocus'] ? 'autofocus' : ''); ?> autocomplete="username" required>
-                        <label for="user" class="form-label">نام کاربری</label>
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="password" name="password" id="password" class="form-input" placeholder=" " <?php p($_['user_autofocus'] ? '' : 'autofocus'); ?> autocomplete="current-password" required>
-                        <label for="password" class="form-label">رمز عبور</label>
-                    </div>
-                    
-                    <div class="form-options">
+                            <div class="form-group">
+                                <input type="text" name="user" id="user" 
+                                       class="form-input" 
+                                       value="<?php p($_['user']); ?>" 
+                                       autocomplete="username" 
+                                       autocorrect="off" 
+                                       autocapitalize="none" 
+                                       autofocus />
+                                <label for="user" class="form-label">نام کاربری</label>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="password" name="password" id="password" 
+                                       class="form-input" 
+                                       autocomplete="current-password" />
+                                <label for="password" class="form-label">رمز عبور</label>
+                            </div>                    <div class="form-options">
                         <label class="remember-me">
                             <input type="checkbox" name="remember_login" value="1" id="remember_login">
                             <span>مرا به خاطر بسپار</span>
@@ -558,11 +569,92 @@
                 </form>
             </div>
         </div>
+
+        <!-- Brand Section - Now on LEFT -->
+        <div class="brand-section">
+            <img src="<?php print_unescaped(OC::$WEBROOT); ?>/themes/sepehr/core/img/logo.svg" alt="<?php p($theme->getTitle()); ?>" class="brand-logo">
+            <h1 class="brand-title"><?php p($theme->getTitle()); ?></h1>
+            <p class="brand-subtitle">پلتفرم ابری پیشرفته برای مدیریت و اشتراک‌گذاری فایل‌ها با امنیت بالا</p>
+            
+            <div class="brand-features">
+                <div class="feature-item">
+                    <div class="feature-icon">🔒</div>
+                    <div>امنیت بالا</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">☁️</div>
+                    <div>ذخیره ابری</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🤝</div>
+                    <div>اشتراک‌گذاری</div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
         // Set timezone offset
         document.getElementById('timezone-offset').value = new Date().getTimezoneOffset();
+
+        // Material Design floating labels
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = document.querySelectorAll('.form-input');
+            
+            function updateLabel(input) {
+                if (input.value && input.value.trim() !== '') {
+                    input.classList.add('has-value');
+                } else {
+                    input.classList.remove('has-value');
+                }
+            }
+            
+            inputs.forEach(function(input) {
+                // Initial check
+                updateLabel(input);
+                
+                // On input event
+                input.addEventListener('input', function() {
+                    updateLabel(this);
+                });
+                
+                // On focus/blur for better UX
+                input.addEventListener('blur', function() {
+                    updateLabel(this);
+                });
+            });
+            
+            // Ripple effect for button
+            const button = document.querySelector('.login-button');
+            if (button) {
+                button.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.cssText = `
+                        position: absolute;
+                        width: ${size}px;
+                        height: ${size}px;
+                        left: ${x}px;
+                        top: ${y}px;
+                        background: rgba(255, 255, 255, 0.3);
+                        border-radius: 50%;
+                        transform: scale(0);
+                        animation: ripple 0.6s ease-out;
+                        pointer-events: none;
+                    `;
+                    
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            }
+        });
 
         // Form handling
         const loginForm = document.getElementById('loginForm');
@@ -572,28 +664,15 @@
             loginButton.classList.add('loading');
             loginButton.querySelector('span').textContent = 'در حال ورود...';
         });
-
-        // Floating label effects
-        const inputs = document.querySelectorAll('.form-input');
-        inputs.forEach(input => {
-            // Check if input has value on page load
-            if (input.value) {
-                input.classList.add('has-value');
-            }
-
-            input.addEventListener('focus', function() {
-                this.classList.add('focused');
-            });
-
-            input.addEventListener('blur', function() {
-                this.classList.remove('focused');
-                if (this.value) {
-                    this.classList.add('has-value');
-                } else {
-                    this.classList.remove('has-value');
-                }
-            });
-        });
     </script>
+
+    <style>
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    </style>
 </body>
 </html>
