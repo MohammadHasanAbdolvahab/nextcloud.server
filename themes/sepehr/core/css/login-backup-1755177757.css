@@ -2,23 +2,30 @@
 /* SPDX-License-Identifier: AGPL-3.0-or-later */
 
 /**
- * SEPEHR Login Page Styling - SAFE VERSION
- * ONLY affects login page - NO impact on main application
+ * SEPEHR Login Page Styling - Clean Version
+ * Applies SEPEHR Material Design theme to Nextcloud's Vue.js login components
  */
 
+/* Import design system and fonts */
 @import url('design-system.css');
 
-/* ONLY target login page body - very specific selector */
+/* Full page background for login */
 body#body-login {
     font-family: var(--sepehr-font-family) !important;
     direction: rtl !important;
     background: var(--sepehr-gradient-primary) !important;
     color: var(--sepehr-text) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    overflow: hidden !important;
 }
 
-/* ONLY login page wrapper - Perfect center positioning */
-body#body-login #login {
-    position: absolute !important;
+/* Login wrapper - perfect centering */
+body#body-login #login,
+body#body-login .wrapper {
+    position: fixed !important;
     top: 0 !important;
     left: 0 !important;
     width: 100vw !important;
@@ -26,55 +33,55 @@ body#body-login #login {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+    background: var(--sepehr-gradient-primary) !important;
     padding: 0 !important;
     margin: 0 !important;
 }
 
-/* ONLY login box styling - Better centering and spacing */
+/* Login box styling */
 body#body-login .guest-box,
 body#body-login .login-box {
     background: white !important;
     border-radius: 16px !important;
     box-shadow: 0 24px 48px rgba(0, 105, 92, 0.15) !important;
-    padding: 2.5rem !important;
-    width: 380px !important;
-    max-width: 90vw !important;
+    padding: 3rem !important;
+    width: 90% !important;
+    max-width: 400px !important;
     direction: rtl !important;
     text-align: center !important;
     border: none !important;
     position: relative !important;
-    margin: 0 !important;
+    margin: 0 auto !important;
 }
 
-/* Add SEPEHR logo - ONLY on login - Better spacing */
+/* Add SEPEHR logo */
 body#body-login .guest-box::before,
 body#body-login .login-box::before {
     content: '' !important;
     display: block !important;
-    width: 70px !important;
-    height: 70px !important;
-    margin: 0 auto 1.5rem auto !important;
+    width: 80px !important;
+    height: 80px !important;
+    margin: 0 auto 1rem auto !important;
     background-image: url('/themes/sepehr/core/img/logo.svg') !important;
     background-size: contain !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
 }
 
-/* SEPEHR brand title - ONLY on login - Better typography */
+/* SEPEHR brand title */
 body#body-login .guest-box::after,
 body#body-login .login-box::after {
     content: 'سپهر کلود' !important;
     display: block !important;
     font-family: var(--sepehr-font-headline) !important;
-    font-size: 1.75rem !important;
-    font-weight: 700 !important;
+    font-size: 2rem !important;
+    font-weight: 800 !important;
     color: var(--sepehr-primary) !important;
     text-align: center !important;
-    margin-bottom: 0.5rem !important;
-    letter-spacing: 0.5px !important;
+    margin-bottom: 1rem !important;
 }
 
-/* Hide original h2 and replace with Persian - ONLY on login */
+/* Hide original h2 and replace with Persian */
 body#body-login .guest-box h2,
 body#body-login .login-box h2 {
     font-size: 0 !important;
@@ -87,19 +94,19 @@ body#body-login .login-box h2::before {
     content: 'ورود به حساب کاربری' !important;
     display: block !important;
     font-family: var(--sepehr-font-headline) !important;
-    font-size: 1.1rem !important;
+    font-size: 1.25rem !important;
     font-weight: 400 !important;
     color: #666 !important;
     text-align: center !important;
-    margin-bottom: 2rem !important;
+    margin-bottom: 1.5rem !important;
 }
 
-/* Input styling - ONLY on login - Improved spacing */
+/* Input styling */
 body#body-login input[type="text"],
 body#body-login input[type="password"],
 body#body-login input[type="email"] {
     width: 100% !important;
-    padding: 0.875rem 0 0.5rem 0 !important;
+    padding: 1rem 0 0.5rem 0 !important;
     border: none !important;
     border-bottom: 2px solid #e0e0e0 !important;
     background: transparent !important;
@@ -109,7 +116,7 @@ body#body-login input[type="email"] {
     text-align: right !important;
     outline: none !important;
     transition: all 0.3s ease !important;
-    margin-bottom: 1.25rem !important;
+    margin-bottom: 1.5rem !important;
 }
 
 body#body-login input[type="text"]:focus,
@@ -118,7 +125,7 @@ body#body-login input[type="email"]:focus {
     border-bottom-color: var(--sepehr-primary) !important;
 }
 
-/* Replace input labels with Persian - ONLY on login */
+/* Replace input labels with Persian */
 body#body-login label[for="user"] {
     font-size: 0 !important;
     position: relative !important;
@@ -149,7 +156,7 @@ body#body-login label[for="password"]::before {
     right: 0 !important;
 }
 
-/* Button styling with Persian text - ONLY on login */
+/* Button styling with Persian text */
 body#body-login input[type="submit"],
 body#body-login button[type="submit"],
 body#body-login .button {
@@ -190,7 +197,7 @@ body#body-login .button:hover {
     box-shadow: 0 8px 20px rgba(0, 105, 92, 0.3) !important;
 }
 
-/* Checkbox and remember me in Persian - ONLY on login */
+/* Checkbox and remember me in Persian */
 body#body-login input[type="checkbox"] {
     accent-color: var(--sepehr-primary) !important;
 }
@@ -211,7 +218,7 @@ body#body-login label:has(input[type="checkbox"])::before {
     color: #666 !important;
 }
 
-/* Links in Persian - ONLY on login */
+/* Links in Persian */
 body#body-login a {
     color: var(--sepehr-primary) !important;
     font-family: var(--sepehr-font-family) !important;
@@ -237,7 +244,7 @@ body#body-login a[href*="device"]::before {
     font-family: var(--sepehr-font-family) !important;
 }
 
-/* Error and success messages - ONLY on login */
+/* Error and success messages */
 body#body-login .message,
 body#body-login .notecard {
     border-radius: 8px !important;
@@ -267,7 +274,7 @@ body#body-login #header {
     display: none !important;
 }
 
-/* Responsive design - ONLY on login */
+/* Responsive design */
 @media (max-width: 768px) {
     body#body-login .guest-box,
     body#body-login .login-box {
@@ -286,7 +293,7 @@ body#body-login #header {
     }
 }
 
-/* Additional branding at bottom - ONLY on login */
+/* Additional branding at bottom */
 body#body-login .guest-box .login-form::after,
 body#body-login .login-box .login-form::after {
     content: 'ابری امن و هوشمند' !important;

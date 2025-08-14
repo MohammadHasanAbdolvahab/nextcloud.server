@@ -1,0 +1,223 @@
+/* SPDX-FileCopyrightText: 2025 SEPEHR Theme */
+/* SPDX-License-Identifier: AGPL-3.0-or-later */
+
+/**
+ * SEPEHR Login Page - Simple and Reliable
+ */
+
+/* Import fonts and design system */
+@import url('fonts.css');
+@import url('design-system.css');
+
+/* Force RTL and Persian font */
+* {
+    font-family: 'Vazirmatn', 'Vazir', sans-serif !important;
+    direction: rtl !important;
+}
+
+/* Full viewport background */
+html, body {
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+}
+
+/* Login page body */
+body#body-login {
+    background: linear-gradient(135deg, #00695c 0%, #004d40 100%) !important;
+    font-family: 'Vazirmatn', sans-serif !important;
+    direction: rtl !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Login wrapper - absolute centering */
+body#body-login #login {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: auto !important;
+    height: auto !important;
+    background: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Login box */
+body#body-login .guest-box,
+body#body-login .login-box {
+    background: white !important;
+    border-radius: 20px !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1) !important;
+    padding: 40px !important;
+    width: 350px !important;
+    text-align: center !important;
+    position: relative !important;
+    margin: 0 !important;
+}
+
+/* SEPEHR Logo */
+body#body-login .guest-box::before,
+body#body-login .login-box::before {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 20px auto;
+    background: url('/themes/sepehr/core/img/logo.svg') center/contain no-repeat;
+}
+
+/* SEPEHR Title */
+body#body-login .guest-box::after,
+body#body-login .login-box::after {
+    content: 'سپهر کلود';
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    color: #00695c;
+    margin-bottom: 10px;
+}
+
+/* Hide original header */
+body#body-login h2 {
+    display: none !important;
+}
+
+/* Add Persian login title */
+body#body-login .guest-box h2::after,
+body#body-login .login-box h2::after {
+    content: 'ورود به حساب کاربری';
+    display: block;
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* Input fields */
+body#body-login input[type="text"],
+body#body-login input[type="password"],
+body#body-login input[type="email"] {
+    width: 100% !important;
+    padding: 15px !important;
+    margin-bottom: 20px !important;
+    border: 2px solid #e0e0e0 !important;
+    border-radius: 10px !important;
+    background: #f8f9fa !important;
+    font-size: 16px !important;
+    direction: rtl !important;
+    text-align: right !important;
+    box-sizing: border-box !important;
+}
+
+body#body-login input:focus {
+    border-color: #00695c !important;
+    outline: none !important;
+}
+
+/* Replace placeholder text */
+body#body-login input[name="user"]::placeholder {
+    content: 'نام کاربری یا ایمیل' !important;
+}
+
+body#body-login input[name="password"]::placeholder {
+    content: 'رمز عبور' !important;
+}
+
+/* Labels in Persian */
+body#body-login label {
+    display: none !important;
+}
+
+/* Login button */
+body#body-login input[type="submit"],
+body#body-login button[type="submit"] {
+    width: 100% !important;
+    padding: 15px !important;
+    background: #00695c !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 10px !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    margin-top: 20px !important;
+}
+
+body#body-login input[type="submit"]:hover,
+body#body-login button[type="submit"]:hover {
+    background: #004d40 !important;
+}
+
+/* Hide/replace button text */
+body#body-login input[type="submit"] {
+    text-indent: -9999px !important;
+    position: relative !important;
+}
+
+body#body-login input[type="submit"]::before {
+    content: 'ورود به سپهر';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-indent: 0;
+    font-weight: bold;
+    color: white;
+}
+
+/* Links */
+body#body-login a {
+    color: #00695c !important;
+    font-size: 14px !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    margin-top: 15px !important;
+}
+
+/* Replace link text */
+body#body-login a[href*="lostpassword"] {
+    font-size: 0 !important;
+}
+
+body#body-login a[href*="lostpassword"]::before {
+    content: 'فراموشی رمز عبور';
+    font-size: 14px;
+}
+
+/* Bottom text */
+body#body-login .guest-box .login-form::after,
+body#body-login .login-box .login-form::after {
+    content: 'سپهر کلود - ابری امن و هوشمند';
+    display: block;
+    margin-top: 30px;
+    font-size: 12px;
+    color: #999;
+}
+
+/* Hide any English text */
+body#body-login * {
+    color: transparent;
+}
+
+body#body-login *::before,
+body#body-login *::after {
+    color: inherit;
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+    body#body-login .guest-box,
+    body#body-login .login-box {
+        width: 90vw !important;
+        padding: 30px 20px !important;
+        margin: 20px !important;
+    }
+}
