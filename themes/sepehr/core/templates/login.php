@@ -712,17 +712,68 @@
                     <p class="form-subtitle" id="formSubtitle">لطفاً اطلاعات خود را وارد کنید</p>
                 </div>
 
-                <?php if (isset($_['errors']) && !empty($_['errors'])): ?>
-                    <div class="message error">
-                        <?php foreach ($_['errors'] as $error): ?>
-                            <p><?php p($error); ?></p>
+                <?php 
+                // Handle login messages from session and URL parameters
+                $session = \OC::$server->getSession();
+                $loginMessages = $session->get('loginMessages');
+                if (is_array($loginMessages)) {
+                    [$errors, $messages] = $loginMessages;
+                    $session->remove('loginMessages'); // Clear messages after displaying
+                } else {
+                    $errors = [];
+                    $messages = [];
+                }
+
+                // Check for URL parameters that indicate login failure
+                if (isset($_GET['direct']) && $_GET['direct'] == '1') {
+                    // This indicates a failed login redirect
+                    if (!empty($errors) || empty($messages)) {
+                        // Add default error message if no specific error is set
+                        if (empty($errors)) {
+                            $errors[] = 'invalidpassword';
+                        }
+                    }
+                }
+
+                // Add any template errors to the errors array
+                if (isset($_['errors']) && !empty($_['errors'])) {
+                    $errors = array_merge($errors, $_['errors']);
+                }
+
+                // Add any template messages to the messages array
+                if (isset($_['messages']) && !empty($_['messages'])) {
+                    $messages = array_merge($messages, $_['messages']);
+                }
+
+                // Persian error message translations
+                $errorTranslations = [
+                    'invalidpassword' => 'نام کاربری یا رمز عبور نادرست است',
+                    'userdisabled' => 'حساب کاربری شما غیرفعال شده است. لطفاً با مدیر سیستم تماس بگیرید',
+                    'csrfCheckFailed' => 'بررسی امنیتی ناموفق بود. لطفاً دوباره تلاش کنید',
+                    'invalidOrigin' => 'درخواست از منبع نامعتبر ارسال شده است',
+                ];
+
+                // Display errors
+                if (!empty($errors)): ?>
+                    <div class="message error" id="loginError">
+                        <?php foreach ($errors as $error): ?>
+                            <p>
+                                <?php 
+                                // Translate known error codes, otherwise show the error as-is
+                                if (isset($errorTranslations[$error])) {
+                                    p($errorTranslations[$error]);
+                                } else {
+                                    p($error);
+                                }
+                                ?>
+                            </p>
                         <?php endforeach; ?>
                     </div>
                 <?php endif; ?>
 
-                <?php if (isset($_['messages']) && !empty($_['messages'])): ?>
+                <?php if (!empty($messages)): ?>
                     <div class="message success">
-                        <?php foreach ($_['messages'] as $message): ?>
+                        <?php foreach ($messages as $message): ?>
                             <p><?php p($message); ?></p>
                         <?php endforeach; ?>
                     </div>
@@ -731,7 +782,7 @@
                 <!-- Dynamic message container for AJAX responses -->
                 <div id="dynamicMessage" class="message" style="display: none;"></div>
 
-                <form method="post" name="login" class="login-form" id="loginForm">
+                <form method="post" name="login" class="login-form" id="loginForm" action="">
                     <input type="hidden" name="timezone-offset" id="timezone-offset" />
                     <input type="hidden" name="requesttoken" value="<?php p($_['requesttoken']) ?>">
 
@@ -838,7 +889,6 @@
         </div>
     </div>
 
-    <script src="<?php print_unescaped(OC::$WEBROOT); ?>/themes/sepehr/core/js/login.js"></script>
     <style>
         @keyframes ripple {
             to {

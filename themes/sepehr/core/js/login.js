@@ -3,8 +3,18 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+console.log('SEPEHR login.js loaded');
+
 // Set timezone offset
-document.getElementById('timezone-offset').value = new Date().getTimezoneOffset();
+try {
+    const timezoneInput = document.getElementById('timezone-offset');
+    if (timezoneInput) {
+        timezoneInput.value = new Date().getTimezoneOffset();
+        console.log('Timezone offset set:', timezoneInput.value);
+    }
+} catch (e) {
+    console.error('Error setting timezone:', e);
+}
 
 // Form switching functionality
 function showForgotPasswordForm() {
@@ -91,11 +101,50 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Form handling
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, initializing login form');
+    
     const loginForm = document.getElementById('loginForm');
     const loginButton = document.getElementById('loginButton');
     const forgotForm = document.getElementById('forgotForm');
     const forgotButton = document.getElementById('forgotButton');
     const dynamicMessage = document.getElementById('dynamicMessage');
+    const userInput = document.getElementById('user');
+    const passwordInput = document.getElementById('password');
+
+    // Clean up URL parameters after failed login (remove ?direct=1&user=xxx)
+    if (window.location.search.includes('direct=1')) {
+        const loginError = document.getElementById('loginError');
+        if (loginError) {
+            // If error message is displayed, clean the URL after a short delay
+            setTimeout(function() {
+                const url = new URL(window.location);
+                url.searchParams.delete('direct');
+                url.searchParams.delete('user');
+                url.searchParams.delete('redirect_url');
+                window.history.replaceState({}, document.title, url.pathname);
+            }, 100);
+        }
+    }
+
+    // Hide error messages when user starts typing
+    function addInputListeners() {
+        [userInput, passwordInput].forEach(function(input) {
+            if (input) {
+                input.addEventListener('input', function() {
+                    hideMessage();
+                    // Also hide any existing error messages on page
+                    const existingErrors = document.querySelectorAll('.message.error');
+                    existingErrors.forEach(function(error) {
+                        if (error.id !== 'dynamicMessage') {
+                            error.style.display = 'none';
+                        }
+                    });
+                });
+            }
+        });
+    }
+    
+    addInputListeners();
 
     // Function to show dynamic messages
     function showMessage(message, type) {
@@ -104,12 +153,13 @@ document.addEventListener('DOMContentLoaded', function() {
             dynamicMessage.className = 'message ' + type;
             dynamicMessage.style.display = 'block';
             
-            // Auto hide after 5 seconds for success messages
-            if (type === 'success') {
-                setTimeout(function() {
+            // Auto hide after 5 seconds for success messages, 10 seconds for errors
+            const hideDelay = type === 'success' ? 5000 : 10000;
+            setTimeout(function() {
+                if (dynamicMessage.style.display !== 'none') {
                     dynamicMessage.style.display = 'none';
-                }, 5000);
-            }
+                }
+            }, hideDelay);
         }
     }
 
@@ -121,14 +171,52 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     if (loginForm && loginButton) {
+        console.log('Login form found, adding event listener');
         loginForm.addEventListener('submit', function(e) {
+            console.log('Login form submitted');
             hideMessage();
+            
+            // Basic validation before submission
+            const userInput = document.getElementById('user');
+            const passwordInput = document.getElementById('password');
+            
+            if (!userInput.value.trim()) {
+                console.log('User input empty');
+                e.preventDefault();
+                showMessage('لطفاً نام کاربری خود را وارد کنید', 'error');
+                return;
+            }
+            
+            if (!passwordInput.value.trim()) {
+                console.log('Password input empty');
+                e.preventDefault();
+                showMessage('لطفاً رمز عبور خود را وارد کنید', 'error');
+                return;
+            }
+            
+            console.log('Form validation passed, submitting...');
+            
+            // Show loading state
             loginButton.classList.add('loading');
             const buttonSpan = loginButton.querySelector('span');
             if (buttonSpan) {
                 buttonSpan.textContent = 'در حال ورود...';
             }
+            
+            // Allow normal form submission
         });
+    } else {
+        console.error('Login form or button not found');
+    }
+
+    function resetLoginButton() {
+        if (loginButton) {
+            loginButton.classList.remove('loading');
+            const buttonSpan = loginButton.querySelector('span');
+            if (buttonSpan) {
+                buttonSpan.textContent = 'ورود به سپهر';
+            }
+        }
     }
 
     if (forgotForm && forgotButton) {
