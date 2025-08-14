@@ -14,6 +14,8 @@ body#body-login {
     direction: rtl !important;
     background: var(--sepehr-gradient-primary) !important;
     color: var(--sepehr-text) !important;
+    display: flex !important;
+    flex-direction: row !important;
 }
 
 /* ONLY login page wrapper - Perfect center positioning */
@@ -297,4 +299,21 @@ body#body-login .login-box .login-form::after {
     text-align: center !important;
     margin-top: 2rem !important;
     font-weight: 300 !important;
+}
+
+
+/* ONLY login box styling - Better centering and spacing */
+body#body-login .guest-box,
+body#body-login #initial-state-container,
+body#body-login .wrapper {
+    text-align: center !important;
+    margin: 0 !important;
+    flex: 1 !important;
+    max-width: 380px !important;
+    height: 560px !important;
+}
+
+/* ONLY login box styling - Better centering and spacing */
+body#body-login .wrapper {
+    z-index: 1000 !important;
 }
