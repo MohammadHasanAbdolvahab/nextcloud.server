@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SPDX-FileCopyrightText: 2025 SEPEHR Theme
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -6,6 +7,7 @@
 ?>
 <!DOCTYPE html>
 <html dir="rtl" lang="fa">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,7 +49,8 @@
         }
 
         /* Ensure full page coverage */
-        html, body {
+        html,
+        body {
             margin: 0 !important;
             padding: 0 !important;
             overflow: hidden !important;
@@ -88,21 +91,35 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         .brand-logo {
             width: 160px;
             height: 160px;
             margin-bottom: 2rem;
-            filter: drop-shadow(0 8px 16px rgba(0,0,0,0.2));
+            filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
             animation: logoGlow 3s ease-in-out infinite;
         }
 
         @keyframes logoGlow {
-            0%, 100% { filter: drop-shadow(0 8px 16px rgba(0,0,0,0.2)); }
-            50% { filter: drop-shadow(0 12px 24px rgba(0,0,0,0.3)); }
+
+            0%,
+            100% {
+                filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+            }
+
+            50% {
+                filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.3));
+            }
         }
 
         .brand-title {
@@ -111,13 +128,13 @@
             color: white;
             margin-bottom: 1rem;
             font-family: var(--sepehr-font-headline);
-            text-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             letter-spacing: -0.02em;
         }
 
         .brand-subtitle {
             font-size: 1.25rem;
-            color: rgba(255,255,255,0.9);
+            color: rgba(255, 255, 255, 0.9);
             text-align: center;
             line-height: 1.6;
             max-width: 400px;
@@ -136,14 +153,14 @@
 
         .feature-item {
             text-align: center;
-            color: rgba(255,255,255,0.8);
+            color: rgba(255, 255, 255, 0.8);
             font-size: 0.875rem;
         }
 
         .feature-icon {
             width: 24px;
             height: 24px;
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 50%;
             margin: 0 auto 0.5rem;
             display: flex;
@@ -186,7 +203,12 @@
             line-height: 1.4;
         }
 
-        .login-form {
+        .hidden {
+            display: none !important;
+        }
+
+        .login-form,
+        .forgot-form {
             margin-bottom: 1.5rem;
         }
 
@@ -217,8 +239,8 @@
             box-shadow: 0 2px 4px rgba(0, 105, 92, 0.1);
         }
 
-        .form-input:focus + .form-label,
-        .form-input:not(:placeholder-shown) + .form-label {
+        .form-input:focus+.form-label,
+        .form-input:not(:placeholder-shown)+.form-label {
             transform: translateY(-1.5rem) scale(0.75);
             color: #00695c;
             font-weight: 500;
@@ -415,6 +437,33 @@
             box-shadow: 0 1px 2px rgba(0, 105, 92, 0.2);
         }
 
+        .login-button.loading {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .login-button.loading::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            margin: auto;
+            border: 2px solid transparent;
+            border-top-color: currentColor;
+            border-radius: 50%;
+            animation: button-loading-spinner 1s ease infinite;
+            left: 1rem;
+        }
+
+        @keyframes button-loading-spinner {
+            from {
+                transform: rotate(0turn);
+            }
+            to {
+                transform: rotate(1turn);
+            }
+        }
+
         /* Messages */
         .message {
             padding: 1rem;
@@ -457,8 +506,13 @@
         }
 
         @keyframes spin {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
         }
 
         /* Responsive Design */
@@ -472,7 +526,7 @@
             .login-wrapper {
                 grid-template-columns: 60% 40%;
             }
-            
+
             .brand-title {
                 font-size: 2.8rem;
             }
@@ -603,7 +657,8 @@
             }
 
             .brand-features {
-                display: none; /* Hide features on very small screens */
+                display: none;
+                /* Hide features on very small screens */
             }
         }
 
@@ -626,7 +681,8 @@
             }
 
             .form-input {
-                font-size: 16px; /* Prevent zoom on iOS */
+                font-size: 16px;
+                /* Prevent zoom on iOS */
                 padding: 1.25rem 3rem 0.5rem 0.75rem;
             }
 
@@ -645,14 +701,15 @@
         }
     </style>
 </head>
+
 <body>
     <div class="login-wrapper">
         <!-- Form Section - Now on RIGHT -->
         <div class="form-section">
             <div class="form-container">
                 <div class="form-header">
-                    <h2 class="form-title">ورود به حساب کاربری</h2>
-                    <p class="form-subtitle">لطفاً اطلاعات خود را وارد کنید</p>
+                    <h2 class="form-title" id="formTitle">ورود به حساب کاربری</h2>
+                    <p class="form-subtitle" id="formSubtitle">لطفاً اطلاعات خود را وارد کنید</p>
                 </div>
 
                 <?php if (isset($_['errors']) && !empty($_['errors'])): ?>
@@ -671,64 +728,88 @@
                     </div>
                 <?php endif; ?>
 
-                <form method="post" name="login" class="login-form" id="loginForm">
-                    <input type="hidden" name="timezone-offset" id="timezone-offset"/>
-                    <input type="hidden" name="requesttoken" value="<?php p($_['requesttoken']) ?>">
-                    
-                            <div class="form-group">
-                                <input type="text" name="user" id="user" 
-                                       class="form-input" 
-                                       value="<?php p($_['user']); ?>" 
-                                       autocomplete="username" 
-                                       autocorrect="off" 
-                                       autocapitalize="none" 
-                                       placeholder=" "
-                                       autofocus />
-                                <label for="user" class="form-label">نام کاربری</label>
-                            </div>
+                <!-- Dynamic message container for AJAX responses -->
+                <div id="dynamicMessage" class="message" style="display: none;"></div>
 
-                            <div class="form-group">
-                                <input type="password" name="password" id="password" 
-                                       class="form-input" 
-                                       autocomplete="current-password"
-                                       placeholder=" " />
-                                <label for="password" class="form-label">رمز عبور</label>
-                                <button type="button" class="password-toggle" aria-label="نمایش/مخفی کردن رمز عبور">
-                                    <svg id="eye-icon" class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                                        <circle cx="12" cy="12" r="3"/>
-                                    </svg>
-                                    <svg id="eye-off-icon" class="eye-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
-                                        <line x1="1" y1="1" x2="23" y2="23"/>
-                                    </svg>
-                                </button>
-                            </div>     
-                            <div class="form-group">
-                                <label class="remember-me" for="remember_login">
-                                    <input type="checkbox" name="remember_login" value="1" id="remember_login">
-                                    <span>مرا به خاطر بسپار</span>
-                                </label>
-                            </div>
-                            <div class="form-options">
-                                <?php if (isset($_['resetPasswordLink']) && $_['resetPasswordLink']): ?>
-                                    <a href="<?php print_unescaped($_['resetPasswordLink']); ?>" class="forgot-link">
-                                        <svg class="forgot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M9 12l2 2 4-4"/>
-                                            <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3"/>
-                                            <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3"/>
-                                            <path d="M3 12h6m6 0h6"/>
-                                        </svg>
-                                        فراموشی رمز عبور
-                                    </a>
-                                <?php else: ?>
-                                    <a href="<?php print_unescaped(OC::$WEBROOT); ?>/lostpassword" class="forgot-link">
-                                        بازیابی رمز عبور
-                                    </a>
-                                <?php endif; ?>
-                            </div>
+                <form method="post" name="login" class="login-form" id="loginForm">
+                    <input type="hidden" name="timezone-offset" id="timezone-offset" />
+                    <input type="hidden" name="requesttoken" value="<?php p($_['requesttoken']) ?>">
+
+                    <div class="form-group">
+                        <input type="text" name="user" id="user"
+                            class="form-input"
+                            value="<?php p($_['user']); ?>"
+                            autocomplete="username"
+                            autocorrect="off"
+                            autocapitalize="none"
+                            placeholder=" "
+                            autofocus />
+                        <label for="user" class="form-label">نام کاربری</label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" name="password" id="password"
+                            class="form-input"
+                            autocomplete="current-password"
+                            placeholder=" " />
+                        <label for="password" class="form-label">رمز عبور</label>
+                        <button type="button" class="password-toggle" aria-label="نمایش/مخفی کردن رمز عبور">
+                            <svg id="eye-icon" class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                <circle cx="12" cy="12" r="3" />
+                            </svg>
+                            <svg id="eye-off-icon" class="eye-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                                <line x1="1" y1="1" x2="23" y2="23" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <label class="remember-me" for="remember_login">
+                            <input type="checkbox" name="remember_login" value="1" id="remember_login">
+                            <span>مرا به خاطر بسپار</span>
+                        </label>
+                    </div>
+
                     <button type="submit" class="login-button" id="loginButton">
                         <span>ورود به سپهر</span>
+                    </button>
+                    <div class="form-options">
+                        <button type="button" class="forgot-link" id="showForgotPassword">
+                            <svg class="forgot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="3" />
+                                <path d="M12 1v6m0 6v6" />
+                                <path d="m15.5 4.5-3 3-3-3" />
+                                <path d="m15.5 19.5-3-3-3 3" />
+                            </svg>
+                            بازیابی رمز عبور
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Forgot Password Form (Hidden by default) -->
+                <form method="post" name="lostpassword" class="forgot-form hidden" id="forgotForm" action="<?php print_unescaped(OC::$WEBROOT); ?>/lostpassword/email">
+                    <input type="hidden" name="requesttoken" value="<?php p($_['requesttoken']) ?>">
+
+                    <div class="form-group">
+                        <input type="text" name="user" id="forgot-email"
+                            class="form-input"
+                            autocomplete="username"
+                            placeholder=" "
+                            required />
+                        <label for="forgot-email" class="form-label">ایمیل یا نام کاربری</label>
+                    </div>
+
+                    <button type="submit" class="login-button" id="forgotButton">
+                        <span>ارسال لینک بازیابی</span>
+                    </button>
+
+                    <button type="button" class="forgot-link" id="showLoginForm">
+                        <svg class="forgot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 12H5" />
+                            <path d="M12 19l-7-7 7-7" />
+                        </svg>
+                        بازگشت به ورود
                     </button>
                 </form>
             </div>
@@ -739,7 +820,7 @@
             <img src="<?php print_unescaped(OC::$WEBROOT); ?>/themes/sepehr/core/img/logo.svg" alt="<?php p($theme->getTitle()); ?>" class="brand-logo">
             <h1 class="brand-title"><?php p($theme->getTitle()); ?></h1>
             <p class="brand-subtitle">پلتفرم ابری پیشرفته برای مدیریت و اشتراک‌گذاری فایل‌ها با امنیت بالا</p>
-            
+
             <div class="brand-features">
                 <div class="feature-item">
                     <div class="feature-icon">🔒</div>
@@ -766,7 +847,8 @@
             }
         }
     </style>
-    
+
     <script nonce="<?php p(\OC::$server->getContentSecurityPolicyNonceManager()->getNonce()) ?>" src="<?php print_unescaped(OC::$WEBROOT); ?>/themes/sepehr/core/js/login.js"></script>
 </body>
+
 </html>
