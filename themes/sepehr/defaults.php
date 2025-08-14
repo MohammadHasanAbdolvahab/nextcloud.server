@@ -1,11 +1,11 @@
 <?php
 /**
- * SPDX-FileCopyrightText: 2025 Nexus Theme
+ * SPDX-FileCopyrightText: 2025 SEPEHR Theme
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
 /**
- * Nexus Material Design Theme for Nextcloud
+ * SEPEHR Material Design Theme for Nextcloud
  * A modern Persian-friendly theme with RTL support
  */
 class OC_Theme {
@@ -14,7 +14,7 @@ class OC_Theme {
      * Returns the base URL for the theme
      */
     public function getBaseUrl() {
-        return OC::$WEBROOT . '/themes/nexus';
+        return OC::$WEBROOT . '/themes/sepehr';
     }
 
     /**
@@ -153,7 +153,7 @@ class OC_Theme {
      * Returns custom JavaScript
      */
     public function getCustomJS() {
-        return $this->getBaseUrl() . '/core/js/nexus.js';
+        return $this->getBaseUrl() . '/core/js/sepehr.js';
     }
 
     /**

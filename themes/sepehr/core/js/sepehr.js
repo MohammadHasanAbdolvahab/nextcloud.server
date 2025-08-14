@@ -1,8 +1,8 @@
-// SPDX-FileCopyrightText: 2025 Nexus Theme
+// SPDX-FileCopyrightText: 2025 SEPEHR Theme
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 /**
- * Nexus Material Design Theme JavaScript
+ * SEPEHR Material Design Theme JavaScript
  * Interactive enhancements and Material Design behaviors
  */
 
@@ -438,7 +438,7 @@
     };
 
     // Theme API for external use
-    window.NexusTheme = {
+    window.SepehrTheme = {
         showNotification: window.showNotification,
         version: '1.0.0',
         initialized: true

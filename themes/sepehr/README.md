@@ -1,6 +1,6 @@
-# Nexus Theme for Nextcloud
+# SEPEHR Theme for Nextcloud
 
-A modern, Material Design-inspired theme for Nextcloud with full RTL (Right-to-Left) support and Persian language optimization.
+A beautiful, modern Material Design theme for Nextcloud with RTL (Right-to-Left) support and Persian language optimization.
 
 ## Features
 
@@ -14,14 +14,14 @@ A modern, Material Design-inspired theme for Nextcloud with full RTL (Right-to-L
 
 ## Installation
 
-1. Copy the `nexus` folder to your Nextcloud themes directory:
+1. Copy the `sepehr` folder to your Nextcloud themes directory:
    ```
-   /path/to/nextcloud/themes/nexus/
+   /path/to/nextcloud/themes/sepehr/
    ```
 
 2. Enable the theme in your Nextcloud configuration file (`config/config.php`):
    ```php
-   'theme' => 'nexus',
+   'theme' => 'sepehr',
    ```
 
 3. Clear the cache and refresh your browser.
@@ -29,7 +29,7 @@ A modern, Material Design-inspired theme for Nextcloud with full RTL (Right-to-L
 ## File Structure
 
 ```
-themes/nexus/
+themes/sepehr/
 ├── defaults.php              # Theme configuration and branding
 ├── README.md                 # This file
 ├── core/
@@ -37,7 +37,7 @@ themes/nexus/
 │   │   ├── design-system.css # Design tokens and variables
 │   │   └── server.css        # Main theme styles
 │   ├── js/
-│   │   └── nexus.js         # Theme JavaScript enhancements
+│   │   └── sepehr.js         # Theme JavaScript enhancements
 │   └── img/
 │       └── logo.svg         # Theme logo
 ├── templates/
@@ -52,9 +52,9 @@ themes/nexus/
 Edit the CSS custom properties in `core/css/design-system.css`:
 ```css
 :root {
-  --nexus-primary: #1976D2;      # Primary brand color
-  --nexus-secondary: #FF5722;    # Secondary accent color
-  --nexus-success: #4CAF50;      # Success state color
+  --sepehr-primary: #1976D2;      # Primary brand color
+  --sepehr-secondary: #FF5722;    # Secondary accent color
+  --sepehr-success: #4CAF50;      # Success state color
   /* ... more colors */
 }
 ```
