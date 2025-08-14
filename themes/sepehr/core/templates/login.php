@@ -196,7 +196,7 @@
         }
 
         .form-input {
-            padding: 1.5rem 1rem 0.5rem 1rem;
+            padding: 1.5rem 3rem 0.5rem 1rem;
             border: 1px solid #e0e0e0;
             border-radius: 4px;
             font-size: 1rem;
@@ -208,8 +208,7 @@
             color: #333;
             box-sizing: border-box;
             display: block;
-            width: -webkit-fill-available !important;
-
+            width: 100% !important;
         }
 
         .form-input:focus {
@@ -219,7 +218,7 @@
         }
 
         .form-input:focus + .form-label,
-        .form-input.has-value + .form-label {
+        .form-input:not(:placeholder-shown) + .form-label {
             transform: translateY(-1.5rem) scale(0.75);
             color: #00695c;
             font-weight: 500;
@@ -239,13 +238,59 @@
             z-index: 1;
         }
 
-        .form-options {
+        .password-toggle {
+            position: absolute;
+            left: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
             display: flex;
-            justify-content: flex-end;
             align-items: center;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-            gap: 1rem;
+            justify-content: center;
+            transition: background-color 0.2s ease;
+            z-index: 10;
+            width: 36px;
+            height: 36px;
+            margin: unset !important;
+            padding: unset !important;
+            background-color: unset !important;
+        }
+
+        .password-toggle:hover {
+            background-color: rgba(0, 105, 92, 0.1);
+        }
+
+        .password-toggle:focus {
+            outline: 2px solid #00695c;
+            outline-offset: 2px;
+        }
+
+        .eye-icon {
+            width: 20px;
+            height: 20px;
+            color: #666;
+            transition: color 0.2s ease;
+        }
+
+        .password-toggle:hover .eye-icon {
+            color: #00695c;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Ensure password input has proper padding for the toggle button */
+        #password {
+            padding-left: 52px !important;
+        }
+
+        .form-options {
+            display: block;
+            margin-bottom: 1rem;
         }
 
         .remember-me {
@@ -293,24 +338,11 @@
         }
 
         .forgot-link {
-            color: #00695c;
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: color 0.2s ease;
-        }
-
-        .forgot-link:hover {
-            color: #004d40;
-            text-decoration: underline;
-        }
-
-        .login-button {
             width: 100% !important;
             padding: 1rem;
-            background: #00695c;
-            color: white;
-            border: none;
+            background: transparent;
+            color: #00695c;
+            border: 2px solid #00695c;
             border-radius: 4px;
             font-size: 1rem;
             font-weight: 500;
@@ -320,16 +352,63 @@
             position: relative;
             overflow: hidden;
             text-align: center;
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
             box-sizing: border-box;
+            text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            box-shadow: 0 2px 4px rgba(0, 105, 92, 0.3);
+            margin-bottom: 1rem;
+        }
+
+        .forgot-link:hover {
+            background: #00695c;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 105, 92, 0.3);
+        }
+
+        .forgot-link:active {
+            box-shadow: 0 1px 2px rgba(0, 105, 92, 0.2);
+        }
+
+        .forgot-icon {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        .login-button {
+            width: 100% !important;
+            padding: 1rem !important;
+            background: transparent !important;
+            color: #00695c !important;
+            border: 2px solid #00695c !important;
+            border-radius: 4px !important;
+            font-size: 1rem !important;
+            font-weight: 500 !important;
+            font-family: var(--sepehr-font-family) !important;
+            cursor: pointer !important;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            position: relative !important;
+            overflow: hidden !important;
+            text-align: center !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 0.5rem !important;
+            box-sizing: border-box !important;
+            text-decoration: none !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.5px !important;
+            margin-bottom: 1rem !important;
         }
 
         .login-button:hover {
-            background: #004d40;
-            box-shadow: 0 4px 8px rgba(0, 105, 92, 0.4);
+            background: #00695c !important;
+            color: white !important;
+            box-shadow: 0 4px 8px rgba(0, 105, 92, 0.3) !important;
         }
 
         .login-button:active {
@@ -548,11 +627,15 @@
 
             .form-input {
                 font-size: 16px; /* Prevent zoom on iOS */
-                padding: 1.25rem 0.75rem 0.5rem 0.75rem;
+                padding: 1.25rem 3rem 0.5rem 0.75rem;
             }
 
             .form-label {
                 right: 0.75rem;
+            }
+
+            .password-toggle {
+                left: 0.5rem;
             }
 
             .login-button {
@@ -599,6 +682,7 @@
                                        autocomplete="username" 
                                        autocorrect="off" 
                                        autocapitalize="none" 
+                                       placeholder=" "
                                        autofocus />
                                 <label for="user" class="form-label">نام کاربری</label>
                             </div>
@@ -606,8 +690,19 @@
                             <div class="form-group">
                                 <input type="password" name="password" id="password" 
                                        class="form-input" 
-                                       autocomplete="current-password" />
+                                       autocomplete="current-password"
+                                       placeholder=" " />
                                 <label for="password" class="form-label">رمز عبور</label>
+                                <button type="button" class="password-toggle" aria-label="نمایش/مخفی کردن رمز عبور">
+                                    <svg id="eye-icon" class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                        <circle cx="12" cy="12" r="3"/>
+                                    </svg>
+                                    <svg id="eye-off-icon" class="eye-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                                        <line x1="1" y1="1" x2="23" y2="23"/>
+                                    </svg>
+                                </button>
                             </div>     
                             <div class="form-group">
                                 <label class="remember-me" for="remember_login">
@@ -617,7 +712,19 @@
                             </div>
                             <div class="form-options">
                                 <?php if (isset($_['resetPasswordLink']) && $_['resetPasswordLink']): ?>
-                                    <a href="<?php print_unescaped($_['resetPasswordLink']); ?>" class="forgot-link">فراموشی رمز عبور</a>
+                                    <a href="<?php print_unescaped($_['resetPasswordLink']); ?>" class="forgot-link">
+                                        <svg class="forgot-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M9 12l2 2 4-4"/>
+                                            <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3"/>
+                                            <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3"/>
+                                            <path d="M3 12h6m6 0h6"/>
+                                        </svg>
+                                        فراموشی رمز عبور
+                                    </a>
+                                <?php else: ?>
+                                    <a href="<?php print_unescaped(OC::$WEBROOT); ?>/lostpassword" class="forgot-link">
+                                        بازیابی رمز عبور
+                                    </a>
                                 <?php endif; ?>
                             </div>
                     <button type="submit" class="login-button" id="loginButton">
@@ -650,79 +757,7 @@
         </div>
     </div>
 
-    <script>
-        // Set timezone offset
-        document.getElementById('timezone-offset').value = new Date().getTimezoneOffset();
-
-        // Material Design floating labels
-        document.addEventListener('DOMContentLoaded', function() {
-            const inputs = document.querySelectorAll('.form-input');
-            
-            function updateLabel(input) {
-                if (input.value && input.value.trim() !== '') {
-                    input.classList.add('has-value');
-                } else {
-                    input.classList.remove('has-value');
-                }
-            }
-            
-            inputs.forEach(function(input) {
-                // Initial check
-                updateLabel(input);
-                
-                // On input event
-                input.addEventListener('input', function() {
-                    updateLabel(this);
-                });
-                
-                // On focus/blur for better UX
-                input.addEventListener('blur', function() {
-                    updateLabel(this);
-                });
-            });
-            
-            // Ripple effect for button
-            const button = document.querySelector('.login-button');
-            if (button) {
-                button.addEventListener('click', function(e) {
-                    const ripple = document.createElement('span');
-                    const rect = this.getBoundingClientRect();
-                    const size = Math.max(rect.width, rect.height);
-                    const x = e.clientX - rect.left - size / 2;
-                    const y = e.clientY - rect.top - size / 2;
-                    
-                    ripple.style.cssText = `
-                        position: absolute;
-                        width: ${size}px;
-                        height: ${size}px;
-                        left: ${x}px;
-                        top: ${y}px;
-                        background: rgba(255, 255, 255, 0.3);
-                        border-radius: 50%;
-                        transform: scale(0);
-                        animation: ripple 0.6s ease-out;
-                        pointer-events: none;
-                    `;
-                    
-                    this.appendChild(ripple);
-                    
-                    setTimeout(() => {
-                        ripple.remove();
-                    }, 600);
-                });
-            }
-        });
-
-        // Form handling
-        const loginForm = document.getElementById('loginForm');
-        const loginButton = document.getElementById('loginButton');
-
-        loginForm.addEventListener('submit', function(e) {
-            loginButton.classList.add('loading');
-            loginButton.querySelector('span').textContent = 'در حال ورود...';
-        });
-    </script>
-
+    <script src="<?php print_unescaped(OC::$WEBROOT); ?>/themes/sepehr/core/js/login.js"></script>
     <style>
         @keyframes ripple {
             to {
@@ -731,5 +766,7 @@
             }
         }
     </style>
+    
+    <script nonce="<?php p(\OC::$server->getContentSecurityPolicyNonceManager()->getNonce()) ?>" src="<?php print_unescaped(OC::$WEBROOT); ?>/themes/sepehr/core/js/login.js"></script>
 </body>
 </html>
