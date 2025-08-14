@@ -604,6 +604,40 @@ label {
   max-width: 400px;
 }
 
+/* Nextcloud Notification Dropdown */
+#header .notifications,
+#header .notifications-button,
+.notifications-container,
+.notification-container,
+div[id*="notification"],
+.notification-wrapper {
+  z-index: var(--nexus-z-dropdown) !important;
+}
+
+.notifications .notification-container,
+.notifications .notification-wrapper,
+#notification,
+.notification-list,
+.notification-item {
+  z-index: var(--nexus-z-popover) !important;
+}
+
+/* Fix notification popup positioning */
+.notification-popup,
+.notification-dropdown,
+.header-menu.popovermenu {
+  z-index: var(--nexus-z-popover) !important;
+  position: absolute !important;
+}
+
+/* Ensure notification content appears above other elements */
+.notification-content,
+.notification-text,
+.notification-actions {
+  z-index: inherit;
+  position: relative;
+}
+
 .notification.success {
   border-left: 4px solid #4CAF50;
 }
