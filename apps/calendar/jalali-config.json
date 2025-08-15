@@ -1,0 +1,19 @@
+{
+    "enabled": true,
+    "autoDetectLocale": true,
+    "supportedLocales": ["fa", "fa_IR", "fa-IR"],
+    "defaultFirstDay": 6,
+    "features": {
+        "dateConversion": true,
+        "monthNames": true,
+        "weekdayNames": true,
+        "rtlSupport": true,
+        "navigation": true
+    },
+    "fallback": {
+        "useBrowserIntegration": true,
+        "preserveOriginalOnError": true
+    },
+    "version": "1.0.0",
+    "createdAt": "2025-08-15T13:19:12Z"
+}
