@@ -6,201 +6,252 @@
  * Interactive enhancements and Material Design behaviors
  */
 
-(function() {
-    'use strict';
-    
-    // Theme initialization
-    document.addEventListener('DOMContentLoaded', function() {
-        initializeTheme();
-        setupFileSelection();
-        setupMaterialRipple();
-        setupTableEnhancements();
-        setupFormEnhancements();
-        setupNotifications();
-        fixTableHeaderOverlap();
-    });
+(function () {
+	"use strict";
 
-    /**
-     * Initialize the theme
-     */
-    function initializeTheme() {
-        // Set RTL direction
-        document.documentElement.setAttribute('dir', 'rtl');
-        document.body.classList.add('sepehr-theme');
-        
-        // Apply Material Design classes
-        applyMaterialDesignClasses();
-        
-        console.log('SEPEHR Material Design Theme initialized');
-    }
+	// Theme initialization
+	document.addEventListener("DOMContentLoaded", function () {
+		initializeTheme();
+		createFooter();
+		setupFileSelection();
+		setupMaterialRipple();
+		setupTableEnhancements();
+		setupFormEnhancements();
+		setupNotifications();
+		fixTableHeaderOverlap();
+	});
 
-    /**
-     * Fix table header overlap issues
-     */
-    function fixTableHeaderOverlap() {
-        const tables = document.querySelectorAll('#filestable, .files-table');
-        tables.forEach(table => {
-            // Ensure proper spacing
-            if (table.id === 'filestable') {
-                table.style.marginTop = '2rem';
-                
-                // Fix header positioning
-                const thead = table.querySelector('thead');
-                if (thead) {
-                    thead.style.position = 'sticky';
-                    thead.style.top = '0';
-                    thead.style.zIndex = '100';
-                    thead.style.background = 'var(--md-surface-variant)';
-                }
-                
-                // Ensure first row is visible
-                const firstRow = table.querySelector('tbody tr:first-child');
-                if (firstRow) {
-                    firstRow.style.borderTop = 'none';
-                }
-            }
-        });
-        
-        // Fix app content spacing
-        const appContent = document.querySelector('.app-content-list, .app-content-wrapper');
-        if (appContent) {
-            appContent.style.marginTop = '2rem';
-        }
-    }
+	/**
+	 * Initialize the theme
+	 */
+	function initializeTheme() {
+		// Set RTL direction
+		document.documentElement.setAttribute("dir", "rtl");
+		document.body.classList.add("sepehr-theme");
 
-    /**
-     * Apply Material Design classes to existing elements
-     */
-    function applyMaterialDesignClasses() {
-        // Convert checkboxes to Material Design
-        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-        checkboxes.forEach(checkbox => {
-            if (!checkbox.closest('.checkbox-material')) {
-                wrapCheckboxWithMaterial(checkbox);
-            }
-        });
+		// Apply Material Design classes
+		applyMaterialDesignClasses();
 
-        // Enhance buttons
-        const buttons = document.querySelectorAll('button, .button, input[type="submit"]');
-        buttons.forEach(button => {
-            if (!button.classList.contains('material-enhanced')) {
-                button.classList.add('material-enhanced');
-            }
-        });
-    }
+		console.log("SEPEHR Material Design Theme initialized");
+	}
 
-    /**
-     * Wrap checkbox with Material Design structure
-     */
-    function wrapCheckboxWithMaterial(checkbox) {
-        const wrapper = document.createElement('div');
-        wrapper.className = 'checkbox-material';
-        
-        const checkmark = document.createElement('span');
-        checkmark.className = 'checkmark';
-        
-        checkbox.parentNode.insertBefore(wrapper, checkbox);
-        wrapper.appendChild(checkbox);
-        wrapper.appendChild(checkmark);
-    }
+	/**
+	 * Create the SEPEHR footer
+	 */
+	function createFooter() {
+		// Don't add footer on login page
+		if (
+			document.body.id === "body-login" ||
+			document.body.id === "body-public"
+		) {
+			return;
+		}
 
-    /**
-     * Setup mobile navigation - Removed sidebar code
-     */
-    function setupMobileNavigation() {
-        // Mobile navigation is now handled by Nextcloud's header menu
-        // No custom sidebar needed
-        console.log('Using Nextcloud\'s built-in mobile navigation');
-    }
+		// Check if footer already exists
+		if (document.getElementById("sepehr-footer")) {
+			return;
+		}
 
-    /**
-     * Setup file selection functionality
-     */
-    function setupFileSelection() {
-        const fileTable = document.getElementById('filestable');
-        if (!fileTable) return;
+		// Wait for layout to be ready
+		setTimeout(function () {
+			// Create footer element
+			const footer = document.createElement("footer");
+			footer.id = "sepehr-footer";
+			footer.innerHTML = "<span>توان گرفته از مرکز بهشتی نژاد</span>";
 
-        let selectedFiles = new Set();
-        const actionBar = document.getElementById('selectedActionsList');
+			// Add footer to body
+			document.body.appendChild(footer);
 
-        // Create action bar if it doesn't exist
-        if (!actionBar) {
-            createActionBar();
-        }
+			console.log("SEPEHR footer created successfully");
+		}, 100);
+	}
 
-        // Handle row selection
-        fileTable.addEventListener('click', function(e) {
-            const row = e.target.closest('tr');
-            if (!row || row.classList.contains('header')) return;
+	/**
+	 * Fix table header overlap issues
+	 */
+	function fixTableHeaderOverlap() {
+		const tables = document.querySelectorAll("#filestable, .files-table");
+		tables.forEach((table) => {
+			// Ensure proper spacing
+			if (table.id === "filestable") {
+				table.style.marginTop = "2rem";
 
-            const checkbox = row.querySelector('input[type="checkbox"]');
-            if (!checkbox) return;
+				// Fix header positioning
+				const thead = table.querySelector("thead");
+				if (thead) {
+					thead.style.position = "sticky";
+					thead.style.top = "0";
+					thead.style.zIndex = "100";
+					thead.style.background = "var(--md-surface-variant)";
+				}
 
-            // Toggle selection
-            if (e.target === checkbox || e.target.closest('.checkbox-material')) {
-                toggleFileSelection(row, checkbox);
-            } else {
-                // Click on row selects it
-                checkbox.checked = !checkbox.checked;
-                toggleFileSelection(row, checkbox);
-            }
+				// Ensure first row is visible
+				const firstRow = table.querySelector("tbody tr:first-child");
+				if (firstRow) {
+					firstRow.style.borderTop = "none";
+				}
+			}
+		});
 
-            updateSelectionUI();
-        });
+		// Fix app content spacing
+		const appContent = document.querySelector(
+			".app-content-list, .app-content-wrapper"
+		);
+		if (appContent) {
+			appContent.style.marginTop = "2rem";
+		}
+	}
 
-        // Handle select all
-        const selectAllCheckbox = fileTable.querySelector('thead input[type="checkbox"]');
-        if (selectAllCheckbox) {
-            selectAllCheckbox.addEventListener('change', function() {
-                const checkboxes = fileTable.querySelectorAll('tbody input[type="checkbox"]');
-                checkboxes.forEach(checkbox => {
-                    checkbox.checked = selectAllCheckbox.checked;
-                    const row = checkbox.closest('tr');
-                    toggleFileSelection(row, checkbox, false);
-                });
-                updateSelectionUI();
-            });
-        }
+	/**
+	 * Apply Material Design classes to existing elements
+	 */
+	function applyMaterialDesignClasses() {
+		// Convert checkboxes to Material Design
+		const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+		checkboxes.forEach((checkbox) => {
+			if (!checkbox.closest(".checkbox-material")) {
+				wrapCheckboxWithMaterial(checkbox);
+			}
+		});
 
-        function toggleFileSelection(row, checkbox, updateSelectAll = true) {
-            const fileId = row.dataset.file || row.dataset.id;
-            
-            if (checkbox.checked) {
-                row.classList.add('selected');
-                selectedFiles.add(fileId);
-            } else {
-                row.classList.remove('selected');
-                selectedFiles.delete(fileId);
-            }
+		// Enhance buttons
+		const buttons = document.querySelectorAll(
+			'button, .button, input[type="submit"]'
+		);
+		buttons.forEach((button) => {
+			if (!button.classList.contains("material-enhanced")) {
+				button.classList.add("material-enhanced");
+			}
+		});
+	}
 
-            // Update select all checkbox
-            if (updateSelectAll && selectAllCheckbox) {
-                const totalCheckboxes = fileTable.querySelectorAll('tbody input[type="checkbox"]').length;
-                const checkedCheckboxes = fileTable.querySelectorAll('tbody input[type="checkbox"]:checked').length;
-                selectAllCheckbox.checked = checkedCheckboxes === totalCheckboxes;
-                selectAllCheckbox.indeterminate = checkedCheckboxes > 0 && checkedCheckboxes < totalCheckboxes;
-            }
-        }
+	/**
+	 * Wrap checkbox with Material Design structure
+	 */
+	function wrapCheckboxWithMaterial(checkbox) {
+		const wrapper = document.createElement("div");
+		wrapper.className = "checkbox-material";
 
-        function updateSelectionUI() {
-            const actionBar = document.getElementById('selectedActionsList');
-            if (!actionBar) return;
+		const checkmark = document.createElement("span");
+		checkmark.className = "checkmark";
 
-            if (selectedFiles.size > 0) {
-                actionBar.classList.add('show');
-                const selectionInfo = actionBar.querySelector('.selection-info');
-                if (selectionInfo) {
-                    selectionInfo.textContent = `${selectedFiles.size} فایل انتخاب شده`;
-                }
-            } else {
-                actionBar.classList.remove('show');
-            }
-        }
+		checkbox.parentNode.insertBefore(wrapper, checkbox);
+		wrapper.appendChild(checkbox);
+		wrapper.appendChild(checkmark);
+	}
 
-        function createActionBar() {
-            const actionBar = document.createElement('div');
-            actionBar.id = 'selectedActionsList';
-            actionBar.innerHTML = `
+	/**
+	 * Setup mobile navigation - Removed sidebar code
+	 */
+	function setupMobileNavigation() {
+		// Mobile navigation is now handled by Nextcloud's header menu
+		// No custom sidebar needed
+		console.log("Using Nextcloud's built-in mobile navigation");
+	}
+
+	/**
+	 * Setup file selection functionality
+	 */
+	function setupFileSelection() {
+		const fileTable = document.getElementById("filestable");
+		if (!fileTable) return;
+
+		let selectedFiles = new Set();
+		const actionBar = document.getElementById("selectedActionsList");
+
+		// Create action bar if it doesn't exist
+		if (!actionBar) {
+			createActionBar();
+		}
+
+		// Handle row selection
+		fileTable.addEventListener("click", function (e) {
+			const row = e.target.closest("tr");
+			if (!row || row.classList.contains("header")) return;
+
+			const checkbox = row.querySelector('input[type="checkbox"]');
+			if (!checkbox) return;
+
+			// Toggle selection
+			if (
+				e.target === checkbox ||
+				e.target.closest(".checkbox-material")
+			) {
+				toggleFileSelection(row, checkbox);
+			} else {
+				// Click on row selects it
+				checkbox.checked = !checkbox.checked;
+				toggleFileSelection(row, checkbox);
+			}
+
+			updateSelectionUI();
+		});
+
+		// Handle select all
+		const selectAllCheckbox = fileTable.querySelector(
+			'thead input[type="checkbox"]'
+		);
+		if (selectAllCheckbox) {
+			selectAllCheckbox.addEventListener("change", function () {
+				const checkboxes = fileTable.querySelectorAll(
+					'tbody input[type="checkbox"]'
+				);
+				checkboxes.forEach((checkbox) => {
+					checkbox.checked = selectAllCheckbox.checked;
+					const row = checkbox.closest("tr");
+					toggleFileSelection(row, checkbox, false);
+				});
+				updateSelectionUI();
+			});
+		}
+
+		function toggleFileSelection(row, checkbox, updateSelectAll = true) {
+			const fileId = row.dataset.file || row.dataset.id;
+
+			if (checkbox.checked) {
+				row.classList.add("selected");
+				selectedFiles.add(fileId);
+			} else {
+				row.classList.remove("selected");
+				selectedFiles.delete(fileId);
+			}
+
+			// Update select all checkbox
+			if (updateSelectAll && selectAllCheckbox) {
+				const totalCheckboxes = fileTable.querySelectorAll(
+					'tbody input[type="checkbox"]'
+				).length;
+				const checkedCheckboxes = fileTable.querySelectorAll(
+					'tbody input[type="checkbox"]:checked'
+				).length;
+				selectAllCheckbox.checked =
+					checkedCheckboxes === totalCheckboxes;
+				selectAllCheckbox.indeterminate =
+					checkedCheckboxes > 0 &&
+					checkedCheckboxes < totalCheckboxes;
+			}
+		}
+
+		function updateSelectionUI() {
+			const actionBar = document.getElementById("selectedActionsList");
+			if (!actionBar) return;
+
+			if (selectedFiles.size > 0) {
+				actionBar.classList.add("show");
+				const selectionInfo =
+					actionBar.querySelector(".selection-info");
+				if (selectionInfo) {
+					selectionInfo.textContent = `${selectedFiles.size} فایل انتخاب شده`;
+				}
+			} else {
+				actionBar.classList.remove("show");
+			}
+		}
+
+		function createActionBar() {
+			const actionBar = document.createElement("div");
+			actionBar.id = "selectedActionsList";
+			actionBar.innerHTML = `
                 <div class="selection-info">0 فایل انتخاب شده</div>
                 <div class="actions">
                     <button class="button secondary" onclick="downloadSelected()">دانلود</button>
@@ -208,30 +259,30 @@
                     <button class="button text" onclick="deleteSelected()">حذف</button>
                 </div>
             `;
-            document.body.appendChild(actionBar);
-        }
-    }
+			document.body.appendChild(actionBar);
+		}
+	}
 
-    /**
-     * Setup Material Design ripple effect
-     */
-    function setupMaterialRipple() {
-        document.addEventListener('click', function(e) {
-            const button = e.target.closest('.button, button, .btn');
-            if (!button) return;
+	/**
+	 * Setup Material Design ripple effect
+	 */
+	function setupMaterialRipple() {
+		document.addEventListener("click", function (e) {
+			const button = e.target.closest(".button, button, .btn");
+			if (!button) return;
 
-            // Create ripple element
-            const ripple = document.createElement('span');
-            ripple.className = 'ripple';
-            
-            // Calculate ripple size and position
-            const rect = button.getBoundingClientRect();
-            const size = Math.max(rect.width, rect.height);
-            const x = e.clientX - rect.left - size / 2;
-            const y = e.clientY - rect.top - size / 2;
-            
-            // Apply styles
-            ripple.style.cssText = `
+			// Create ripple element
+			const ripple = document.createElement("span");
+			ripple.className = "ripple";
+
+			// Calculate ripple size and position
+			const rect = button.getBoundingClientRect();
+			const size = Math.max(rect.width, rect.height);
+			const x = e.clientX - rect.left - size / 2;
+			const y = e.clientY - rect.top - size / 2;
+
+			// Apply styles
+			ripple.style.cssText = `
                 position: absolute;
                 border-radius: 50%;
                 background: rgba(255, 255, 255, 0.6);
@@ -244,24 +295,24 @@
                 z-index: 1;
             `;
 
-            // Add ripple to button
-            button.style.position = 'relative';
-            button.style.overflow = 'hidden';
-            button.appendChild(ripple);
+			// Add ripple to button
+			button.style.position = "relative";
+			button.style.overflow = "hidden";
+			button.appendChild(ripple);
 
-            // Remove ripple after animation
-            setTimeout(() => {
-                if (ripple.parentNode) {
-                    ripple.parentNode.removeChild(ripple);
-                }
-            }, 600);
-        });
+			// Remove ripple after animation
+			setTimeout(() => {
+				if (ripple.parentNode) {
+					ripple.parentNode.removeChild(ripple);
+				}
+			}, 600);
+		});
 
-        // Add ripple animation CSS
-        if (!document.getElementById('ripple-styles')) {
-            const style = document.createElement('style');
-            style.id = 'ripple-styles';
-            style.textContent = `
+		// Add ripple animation CSS
+		if (!document.getElementById("ripple-styles")) {
+			const style = document.createElement("style");
+			style.id = "ripple-styles";
+			style.textContent = `
                 @keyframes ripple-animation {
                     to {
                         transform: scale(4);
@@ -269,179 +320,188 @@
                     }
                 }
             `;
-            document.head.appendChild(style);
-        }
-    }
+			document.head.appendChild(style);
+		}
+	}
 
-    /**
-     * Setup table enhancements
-     */
-    function setupTableEnhancements() {
-        const tables = document.querySelectorAll('table');
-        tables.forEach(table => {
-            // Add hover effects
-            const rows = table.querySelectorAll('tbody tr');
-            rows.forEach(row => {
-                row.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-1px)';
-                    this.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
-                });
-                
-                row.addEventListener('mouseleave', function() {
-                    if (!this.classList.contains('selected')) {
-                        this.style.transform = '';
-                        this.style.boxShadow = '';
-                    }
-                });
-            });
+	/**
+	 * Setup table enhancements
+	 */
+	function setupTableEnhancements() {
+		const tables = document.querySelectorAll("table");
+		tables.forEach((table) => {
+			// Add hover effects
+			const rows = table.querySelectorAll("tbody tr");
+			rows.forEach((row) => {
+				row.addEventListener("mouseenter", function () {
+					this.style.transform = "translateY(-1px)";
+					this.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)";
+				});
 
-            // Enhance sorting
-            const headers = table.querySelectorAll('th[data-sort]');
-            headers.forEach(header => {
-                header.style.cursor = 'pointer';
-                header.addEventListener('click', function() {
-                    // Add sorting visual feedback
-                    headers.forEach(h => h.classList.remove('sort-asc', 'sort-desc'));
-                    
-                    const currentSort = this.dataset.currentSort || 'none';
-                    if (currentSort === 'asc') {
-                        this.classList.add('sort-desc');
-                        this.dataset.currentSort = 'desc';
-                    } else {
-                        this.classList.add('sort-asc');
-                        this.dataset.currentSort = 'asc';
-                    }
-                });
-            });
-        });
-    }
+				row.addEventListener("mouseleave", function () {
+					if (!this.classList.contains("selected")) {
+						this.style.transform = "";
+						this.style.boxShadow = "";
+					}
+				});
+			});
 
-    /**
-     * Setup form enhancements
-     */
-    function setupFormEnhancements() {
-        // Floating labels for inputs
-        const inputs = document.querySelectorAll('input, textarea');
-        inputs.forEach(input => {
-            if (input.type === 'checkbox' || input.type === 'radio') return;
+			// Enhance sorting
+			const headers = table.querySelectorAll("th[data-sort]");
+			headers.forEach((header) => {
+				header.style.cursor = "pointer";
+				header.addEventListener("click", function () {
+					// Add sorting visual feedback
+					headers.forEach((h) =>
+						h.classList.remove("sort-asc", "sort-desc")
+					);
 
-            // Add focus/blur classes
-            input.addEventListener('focus', function() {
-                this.parentElement?.classList.add('focused');
-            });
+					const currentSort = this.dataset.currentSort || "none";
+					if (currentSort === "asc") {
+						this.classList.add("sort-desc");
+						this.dataset.currentSort = "desc";
+					} else {
+						this.classList.add("sort-asc");
+						this.dataset.currentSort = "asc";
+					}
+				});
+			});
+		});
+	}
 
-            input.addEventListener('blur', function() {
-                this.parentElement?.classList.remove('focused');
-                if (this.value) {
-                    this.parentElement?.classList.add('filled');
-                } else {
-                    this.parentElement?.classList.remove('filled');
-                }
-            });
+	/**
+	 * Setup form enhancements
+	 */
+	function setupFormEnhancements() {
+		// Floating labels for inputs
+		const inputs = document.querySelectorAll("input, textarea");
+		inputs.forEach((input) => {
+			if (input.type === "checkbox" || input.type === "radio") return;
 
-            // Check initial value
-            if (input.value) {
-                input.parentElement?.classList.add('filled');
-            }
-        });
+			// Add focus/blur classes
+			input.addEventListener("focus", function () {
+				this.parentElement?.classList.add("focused");
+			});
 
-        // Form validation feedback
-        const forms = document.querySelectorAll('form');
-        forms.forEach(form => {
-            form.addEventListener('submit', function(e) {
-                const inputs = this.querySelectorAll('input[required], textarea[required]');
-                inputs.forEach(input => {
-                    if (!input.value.trim()) {
-                        input.classList.add('error');
-                        e.preventDefault();
-                    } else {
-                        input.classList.remove('error');
-                    }
-                });
-            });
-        });
-    }
+			input.addEventListener("blur", function () {
+				this.parentElement?.classList.remove("focused");
+				if (this.value) {
+					this.parentElement?.classList.add("filled");
+				} else {
+					this.parentElement?.classList.remove("filled");
+				}
+			});
 
-    /**
-     * Setup notifications
-     */
-    function setupNotifications() {
-        // Auto-dismiss notifications
-        const notifications = document.querySelectorAll('.notification');
-        notifications.forEach(notification => {
-            setTimeout(() => {
-                notification.style.opacity = '0';
-                notification.style.transform = 'translateX(100%)';
-                setTimeout(() => {
-                    notification.remove();
-                }, 300);
-            }, 5000);
-        });
-    }
+			// Check initial value
+			if (input.value) {
+				input.parentElement?.classList.add("filled");
+			}
+		});
 
-    /**
-     * Utility function to show notifications
-     */
-    window.showNotification = function(message, type = 'info') {
-        const notification = document.createElement('div');
-        notification.className = `notification ${type}`;
-        notification.innerHTML = `
+		// Form validation feedback
+		const forms = document.querySelectorAll("form");
+		forms.forEach((form) => {
+			form.addEventListener("submit", function (e) {
+				const inputs = this.querySelectorAll(
+					"input[required], textarea[required]"
+				);
+				inputs.forEach((input) => {
+					if (!input.value.trim()) {
+						input.classList.add("error");
+						e.preventDefault();
+					} else {
+						input.classList.remove("error");
+					}
+				});
+			});
+		});
+	}
+
+	/**
+	 * Setup notifications
+	 */
+	function setupNotifications() {
+		// Auto-dismiss notifications
+		const notifications = document.querySelectorAll(".notification");
+		notifications.forEach((notification) => {
+			setTimeout(() => {
+				notification.style.opacity = "0";
+				notification.style.transform = "translateX(100%)";
+				setTimeout(() => {
+					notification.remove();
+				}, 300);
+			}, 5000);
+		});
+	}
+
+	/**
+	 * Utility function to show notifications
+	 */
+	window.showNotification = function (message, type = "info") {
+		const notification = document.createElement("div");
+		notification.className = `notification ${type}`;
+		notification.innerHTML = `
             <div>${message}</div>
             <button onclick="this.parentElement.remove()" style="margin-right: 10px;">&times;</button>
         `;
-        
-        document.body.appendChild(notification);
-        
-        // Animate in
-        setTimeout(() => {
-            notification.style.opacity = '1';
-            notification.style.transform = 'translateX(0)';
-        }, 100);
-        
-        // Auto dismiss
-        setTimeout(() => {
-            if (notification.parentElement) {
-                notification.style.opacity = '0';
-                notification.style.transform = 'translateX(100%)';
-                setTimeout(() => notification.remove(), 300);
-            }
-        }, 5000);
-    };
 
-    /**
-     * File action functions (called from action bar)
-     */
-    window.downloadSelected = function() {
-        const selected = document.querySelectorAll('#filestable tbody tr.selected');
-        if (selected.length === 0) return;
-        
-        showNotification(`شروع دانلود ${selected.length} فایل`, 'success');
-        // Add actual download logic here
-    };
+		document.body.appendChild(notification);
 
-    window.moveSelected = function() {
-        const selected = document.querySelectorAll('#filestable tbody tr.selected');
-        if (selected.length === 0) return;
-        
-        showNotification(`انتقال ${selected.length} فایل`, 'info');
-        // Add actual move logic here
-    };
+		// Animate in
+		setTimeout(() => {
+			notification.style.opacity = "1";
+			notification.style.transform = "translateX(0)";
+		}, 100);
 
-    window.deleteSelected = function() {
-        const selected = document.querySelectorAll('#filestable tbody tr.selected');
-        if (selected.length === 0) return;
-        
-        if (confirm(`آیا از حذف ${selected.length} فایل اطمینان دارید؟`)) {
-            showNotification(`حذف ${selected.length} فایل`, 'warning');
-            // Add actual delete logic here
-        }
-    };
+		// Auto dismiss
+		setTimeout(() => {
+			if (notification.parentElement) {
+				notification.style.opacity = "0";
+				notification.style.transform = "translateX(100%)";
+				setTimeout(() => notification.remove(), 300);
+			}
+		}, 5000);
+	};
 
-    // Theme API for external use
-    window.SepehrTheme = {
-        showNotification: window.showNotification,
-        version: '1.0.0',
-        initialized: true
-    };
+	/**
+	 * File action functions (called from action bar)
+	 */
+	window.downloadSelected = function () {
+		const selected = document.querySelectorAll(
+			"#filestable tbody tr.selected"
+		);
+		if (selected.length === 0) return;
 
+		showNotification(`شروع دانلود ${selected.length} فایل`, "success");
+		// Add actual download logic here
+	};
+
+	window.moveSelected = function () {
+		const selected = document.querySelectorAll(
+			"#filestable tbody tr.selected"
+		);
+		if (selected.length === 0) return;
+
+		showNotification(`انتقال ${selected.length} فایل`, "info");
+		// Add actual move logic here
+	};
+
+	window.deleteSelected = function () {
+		const selected = document.querySelectorAll(
+			"#filestable tbody tr.selected"
+		);
+		if (selected.length === 0) return;
+
+		if (confirm(`آیا از حذف ${selected.length} فایل اطمینان دارید؟`)) {
+			showNotification(`حذف ${selected.length} فایل`, "warning");
+			// Add actual delete logic here
+		}
+	};
+
+	// Theme API for external use
+	window.SepehrTheme = {
+		showNotification: window.showNotification,
+		version: "1.0.0",
+		initialized: true,
+	};
 })();

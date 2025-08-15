@@ -1,0 +1,238 @@
+<?php
+/**
+ * Theme override: layout.user.php
+ * This file mirrors the core layout.user.php but injects the theme's
+ * JavaScript just before the closing </body> using the CSP nonce. Keep this
+ * file minimal and in sync with core to avoid breaking header / app menu.
+ */
+
+/**
+ * @var \OC_Defaults $theme
+ * @var array $_
+ */
+
+$getUserAvatar = static function (int $size) use ($_): string {
+    return \OCP\Server::get(\OCP\IURLGenerator::class)->linkToRoute('core.avatar.getAvatar', [
+        'userId' => $_['user_uid'],
+        'size' => $size,
+        'v' => $_['userAvatarVersion']
+    ]);
+}
+
+?><!DOCTYPE html>
+<html class="ng-csp" data-placeholder-focus="false" lang="<?php p($_['language']); ?>" data-locale="<?php p($_['locale']); ?>" translate="no" >
+    <head data-user="<?php p($_['user_uid']); ?>" data-user-displayname="<?php p($_['user_displayname']); ?>" data-requesttoken="<?php p($_['requesttoken']); ?>">
+        <meta charset="utf-8">
+        <title>
+            <?php
+                p(!empty($_['pageTitle']) && (empty($_['application']) || $_['pageTitle'] !== $_['application']) ? $_['pageTitle'] . ' - ' : '');
+    p(!empty($_['application']) ? $_['application'] . ' - ' : '');
+    p($theme->getTitle());
+    ?>
+        </title>
+        <meta name="csp-nonce" nonce="<?php p($_['cspNonce']); ?>">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+        <?php if ($theme->getiTunesAppId() !== '') { ?>
+        <meta name="apple-itunes-app" content="app-id=<?php p($theme->getiTunesAppId()); ?>">
+        <?php } ?>
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-title" content="<?php p((!empty($_['application']) && $_['appid'] != 'files')? $_['application']:$theme->getTitle()); ?>">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="theme-color" content="<?php p($theme->getColorPrimary()); ?>">
+        <link rel="icon" href="<?php print_unescaped(image_path($_['appid'], 'favicon.ico')); ?>">
+        <link rel="apple-touch-icon" href="<?php print_unescaped(image_path($_['appid'], 'favicon-touch.png')); ?>">
+        <link rel="apple-touch-icon-precomposed" href="<?php print_unescaped(image_path($_['appid'], 'favicon-touch.png')); ?>">
+        <link rel="mask-icon" sizes="any" href="<?php print_unescaped(image_path($_['appid'], 'favicon-mask.svg')); ?>" color="<?php p($theme->getColorPrimary()); ?>">
+        <link rel="manifest" href="<?php print_unescaped(image_path($_['appid'], 'manifest.json')); ?>" crossorigin="use-credentials">
+        <?php emit_css_loading_tags($_); ?>
+        <?php emit_script_loading_tags($_); ?>
+        <?php print_unescaped($_['headers']); ?>
+    </head>
+    <body dir="<?php p($_['direction']); ?>" id="<?php p($_['bodyid']);?>" <?php foreach ($_['enabledThemes'] as $themeId) { p("data-theme-$themeId "); }?> data-themes=<?php p(join(',', $_['enabledThemes'])) ?> >
+        <?php include 'layout.noscript.warning.php'; ?>
+        <?php include 'layout.initial-state.php'; ?>
+
+        <div id="skip-actions">
+            <?php if ($_['id-app-content'] !== null) { ?><a href="<?php p($_['id-app-content']); ?>" class="button primary skip-navigation skip-content"><?php p($l->t('Skip to main content')); ?></a><?php } ?>
+            <?php if ($_['id-app-navigation'] !== null) { ?><a href="<?php p($_['id-app-navigation']); ?>" class="button primary skip-navigation"><?php p($l->t('Skip to navigation of app')); ?></a><?php } ?>
+        </div>
+
+        <header id="header">
+            <div class="header-start">
+                <a href="<?php print_unescaped($_['logoUrl'] ?: link_to('', 'index.php')); ?>" aria-label="<?php p($l->t('Go to %s', [$_['logoUrl'] ?: $_['defaultAppName']])); ?>" id="nextcloud">
+                    <div class="logo logo-icon"></div>
+                </a>
+
+                <nav id="header-start__appmenu"></nav>
+            </div>
+
+            <div class="header-end">
+                <div id="unified-search"></div>
+                <div id="notifications"></div>
+                <div id="contactsmenu"></div>
+                <div id="user-menu"></div>
+            </div>
+        </header>
+
+        <div id="content" class="app-<?php p($_['appid']) ?>">
+            <h1 class="hidden-visually" id="page-heading-level-1">
+                <?php p((!empty($_['application']) && !empty($_['pageTitle']) && $_['application'] != $_['pageTitle'])
+                    ? $_['application'] . ': ' . $_['pageTitle']
+                    : (!empty($_['pageTitle']) ? $_['pageTitle'] : $theme->getName())
+                ); ?>
+            </h1>
+            <?php print_unescaped($_['content']); ?>
+        </div>
+        <div id="profiler-toolbar"></div>
+
+        <!-- Inject theme JS with CSP nonce to ensure sepehr.js loads on authenticated pages -->
+        <?php if (method_exists($theme, 'getCustomJs')) { ?>
+            <script src="<?php p($theme->getCustomJs()); ?>" nonce="<?php p($_['cspNonce']); ?>"></script>
+        <?php } ?>
+    </body>
+</html>
+<?php
+/**
+ * SPDX-FileCopyrightText: 2025 SEPEHR Theme
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
+/**
+ * @var \OC_Defaults $theme
+ * @var array $_
+ */
+
+$getUserAvatar = static function (int $size) use ($_): string {
+	return \OCP\Server::get(\OCP\IURLGenerator::class)->linkToRoute('core.avatar.getAvatar', [
+		'userId' => $_['user_uid'],
+		'size' => $size,
+		'v' => $_['userAvatarVersion']
+	]);
+}
+
+?><!DOCTYPE html>
+<html class="ng-csp" data-placeholder-focus="false" lang="<?php p($_['language']); ?>" data-locale="<?php p($_['locale']); ?>" translate="no" >
+	<head data-user="<?php p($_['user_uid']); ?>" data-user-displayname="<?php p($_['user_displayname']); ?>" data-requesttoken="<?php p($_['requesttoken']); ?>">
+		<meta charset="utf-8">
+		<title>
+			<?php
+				p(!empty($_['pageTitle']) && (empty($_['application']) || $_['pageTitle'] !== $_['application']) ? $_['pageTitle'] . ' - ' : '');
+p(!empty($_['application']) ? $_['application'] . ' - ' : '');
+p($theme->getTitle());
+?>
+		</title>
+		<meta name="csp-nonce" nonce="<?php p($_['cspNonce']); /* Do not pass into "content" to prevent exfiltration */ ?>">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0<?php if (isset($_['viewport_maximum_scale'])) {
+			p(', maximum-scale=' . $_['viewport_maximum_scale']);
+		} ?>">
+
+		<?php if ($theme->getiTunesAppId() !== '') { ?>
+		<meta name="apple-itunes-app" content="app-id=<?php p($theme->getiTunesAppId()); ?>">
+		<?php } ?>
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-title" content="<?php p((!empty($_['application']) && $_['appid'] != 'files')? $_['application']:$theme->getTitle()); ?>">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="theme-color" content="<?php p($theme->getColorPrimary()); ?>">
+		<link rel="icon" href="<?php print_unescaped(image_path($_['appid'], 'favicon.ico')); /* IE11+ supports png */ ?>">
+		<link rel="apple-touch-icon" href="<?php print_unescaped(image_path($_['appid'], 'favicon-touch.png')); ?>">
+		<link rel="apple-touch-icon-precomposed" href="<?php print_unescaped(image_path($_['appid'], 'favicon-touch.png')); ?>">
+		<link rel="mask-icon" sizes="any" href="<?php print_unescaped(image_path($_['appid'], 'favicon-mask.svg')); ?>" color="<?php p($theme->getColorPrimary()); ?>">
+		<link rel="manifest" href="<?php print_unescaped(image_path($_['appid'], 'manifest.json')); ?>" crossorigin="use-credentials">
+		<?php emit_css_loading_tags($_); ?>
+		<?php emit_script_loading_tags($_); ?>
+		<?php print_unescaped($_['headers']); ?>
+	</head>
+	<body dir="<?php p($_['direction']); ?>" id="<?php p($_['bodyid']);?>" <?php foreach ($_['enabledThemes'] as $themeId) {
+		p("data-theme-$themeId ");
+	}?> data-themes=<?php p(join(',', $_['enabledThemes'])) ?>>
+		<?php include \OC::$SERVERROOT . '/core/templates/layout.noscript.warning.php'; ?>
+		<?php include \OC::$SERVERROOT . '/core/templates/layout.initial-state.php'; ?>
+
+		<div id="skip-actions">
+			<?php if ($_['id-app-content'] !== null) { ?><a href="<?php p($_['id-app-content']); ?>" class="button primary skip-navigation skip-content"><?php p($l->t('Skip to main content')); ?></a><?php } ?>
+			<?php if ($_['id-app-navigation'] !== null) { ?><a href="<?php p($_['id-app-navigation']); ?>" class="button primary skip-navigation"><?php p($l->t('Skip to navigation of app')); ?></a><?php } ?>
+		</div>
+
+		<header id="header">
+			<div class="header-start">
+				<a href="<?php print_unescaped($_['logoUrl'] ?: link_to('', 'index.php')); ?>"
+					aria-label="<?php p($l->t('Go to %s', [$_['logoUrl'] ?: $_['defaultAppName']])); ?>"
+					id="nextcloud">
+					<div class="logo logo-icon"></div>
+				</a>
+
+				<nav id="header-start__appmenu"></nav>
+			</div>
+
+			<div class="header-end">
+				<div id="unified-search"></div>
+				<div id="notifications"></div>
+				<div id="contactsmenu"></div>
+				<div id="user-menu"></div>
+			</div>
+		</header>
+
+		<div id="content" class="app-<?php p($_['appid']) ?>">
+			<h1 class="hidden-visually" id="page-heading-level-1">
+				<?php p((!empty($_['application']) && !empty($_['pageTitle']) && $_['application'] != $_['pageTitle'])
+					? $_['application'] . ': ' . $_['pageTitle']
+					: (!empty($_['pageTitle']) ? $_['pageTitle'] : $theme->getName())
+				); ?>
+			</h1>
+			<?php print_unescaped($_['content']); ?>
+		</div>
+		
+		<!-- SEPEHR Custom Footer -->
+		<footer id="sepehr-footer" style="
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background: rgba(255, 255, 255, 0.95);
+			backdrop-filter: blur(10px);
+			border-top: 1px solid rgba(0, 105, 92, 0.1);
+			padding: 8px 20px;
+			text-align: center;
+			font-size: 11px;
+			color: #666;
+			z-index: 1000;
+			box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+		">
+			<span style="font-weight: 500; color: #00695c;">توان گرفته از مرکز بهشتی نژاد</span>
+		</footer>
+		
+		<!-- Add some padding to content to prevent footer overlap -->
+		<style>
+			#content {
+				padding-bottom: 50px !important;
+			}
+			
+			/* Responsive footer */
+			@media (max-width: 768px) {
+				#sepehr-footer {
+					font-size: 10px;
+					padding: 6px 15px;
+				}
+				#content {
+					padding-bottom: 40px !important;
+				}
+			}
+			
+			/* Dark mode support */
+			[data-theme-dark] #sepehr-footer {
+				background: rgba(25, 25, 25, 0.95);
+				border-top-color: rgba(0, 105, 92, 0.2);
+				color: #ccc;
+			}
+			
+			[data-theme-dark] #sepehr-footer span {
+				color: #4db6ac;
+			}
+		</style>
+		
+		<div id="profiler-toolbar"></div>
+	</body>
+</html>

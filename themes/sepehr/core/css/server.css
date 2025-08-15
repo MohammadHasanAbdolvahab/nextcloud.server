@@ -31,6 +31,7 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  padding-bottom: 50px; /* Add space for footer */
 }
 
 /* Typography */
@@ -304,10 +305,60 @@ p {
   transition: background var(--sepehr-transition-fast);
 }
 
+#header .header-start li a:hover,
 #header .header-end button:hover,
 #header .header-end .menutoggle:hover {
   background: var(--md-surface-variant);
 }
+
+#header .header-start li a svg,
+#header .header-end button svg,
+#header .header-end .menutoggle svg{
+  fill: var(--sepehr-surface) !important;
+}
+
+#header .header-start li a:hover svg,
+#header .header-end button:hover svg,
+#header .header-end .menutoggle:hover svg{
+  fill: var(--sepehr-primary) !important;
+}
+
+#header .header-start li {
+  --app-menu-entry-font-size: 11px !important;
+  width: 60px !important;
+}
+
+#header .header-start li a {
+  border-radius: var(--sepehr-radius-md) !important;
+  padding: var(--sepehr-space-2) !important;
+}
+
+/* Target specific icon elements only - not labels */
+#header .header-start li a .app-menu-icon__icon,
+#header .header-start li a img,
+#header .header-start li a svg {
+  filter: brightness(0) invert(1);
+  transition: filter 0.3s ease;
+}
+
+/* Labels should only have color, not filter */
+#header .header-start li a .app-menu-entry__label {
+  color: var(--sepehr-surface);
+  transition: color 0.3s ease;
+}
+
+/* Hover states for icons */
+#header .header-start li a:hover .app-menu-icon__icon,
+#header .header-start li a:hover img,
+#header .header-start li a:hover svg {
+  filter: invert(23%) sepia(9%) saturate(1094%) hue-rotate(133deg) brightness(89%) contrast(85%) !important;
+}
+
+/* Hover state for labels */
+#header .header-start li a:hover .app-menu-entry__label {
+  color: var(--sepehr-primary) !important;
+}
+
 
 /* User menu in header */
 /* #header .header-menu {
@@ -750,12 +801,77 @@ button:focus, a:focus {
   @import url('print.css');
 }
 
+.v-popper__wrapper .v-popper__inner .app-menu__overflow-entry .action-link__icon--url {
+    filter: invert(23%) sepia(9%) saturate(1094%) hue-rotate(133deg) brightness(89%) contrast(85%) !important;
+}
 
-.app-menu__overflow[data-v-7661a89b] .button-vue--vue-tertiary:not([aria-expanded=true]) {
+.v-popper__wrapper .v-popper__inner .app-menu__overflow-entry .action-link__text {
     color: var(--sepehr-primary) !important;
 }
 
+.app-menu__overflow[data-v-7661a89b] .button-vue--vue-tertiary:not([aria-expanded=true]) {
+    color: var(--sepehr-primary) !important;
+    filter: brightness(0) invert(1) !important;
+}
+
 .app-menu__overflow[data-v-7661a89b] .button-vue--vue-tertiary {
-    filter: none !important;
+    /* filter: none !important; */
+    filter: brightness(0) invert(1) !important;
+}
+
+/* SEPEHR Footer Styles */
+#sepehr-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(0, 105, 92, 0.1);
+    padding: 8px 20px;
+    text-align: center;
+    font-size: 11px;
+    color: #666;
+    z-index: 2000;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    font-family: var(--sepehr-font-family);
+    direction: rtl;
+}
+
+#sepehr-footer span {
+    font-weight: 500;
+    color: #00695c;
+}
+
+/* Responsive footer */
+@media (max-width: 768px) {
+    #sepehr-footer {
+        font-size: 10px;
+        padding: 6px 15px;
+    }
+    body {
+        padding-bottom: 40px !important;
+    }
+}
+
+/* Dark mode support */
+[data-themes*="dark"] #sepehr-footer,
+[data-theme-dark] #sepehr-footer {
+    background: rgba(25, 25, 25, 0.95);
+    border-top-color: rgba(0, 105, 92, 0.2);
+    color: #ccc;
+}
+
+[data-themes*="dark"] #sepehr-footer span,
+[data-theme-dark] #sepehr-footer span {
+    color: #4db6ac;
+}
+
+/* Ensure content doesn't overlap footer */
+#content-wrapper,
+#app-content,
+.app-content {
+    padding-bottom: 50px !important;
 }
 

@@ -28,7 +28,7 @@ class OC_Theme {
      * Returns the theme title
      */
     public function getTitle() {
-        return 'سپهر کلود'; // SEPEHR Cloud in Persian
+        return 'اکو سیستم سپهر'; // SEPEHR Ecosystem in Persian
     }
 
     /**
@@ -42,7 +42,7 @@ class OC_Theme {
      * Returns the theme entity
      */
     public function getEntity() {
-        return 'سپهر کلود'; // SEPEHR Cloud in Persian
+        return 'اکو سیستم سپهر'; // SEPEHR Ecosystem in Persian
     }
 
     /**
@@ -56,14 +56,14 @@ class OC_Theme {
      * Returns the short footer text
      */
     public function getShortFooter() {
-        return 'سپهر کلود - ابری امن برای همه';
+        return 'اکو سیستم سپهر - توان گرفته از مرکز بهشتی نژاد';
     }
 
     /**
      * Returns the long footer text
      */
     public function getLongFooter() {
-        return 'سپهر کلود - پلتفرم ابری امن و هوشمند با پشتیبانی کامل از زبان فارسی و طراحی راست‌چین';
+        return 'اکو سیستم سپهر - پلتفرم ابری امن و هوشمند با پشتیبانی کامل از زبان فارسی و طراحی راست‌چین - توان گرفته از مرکز بهشتی نژاد';
     }
 
     /**
@@ -150,7 +150,7 @@ class OC_Theme {
     }
 
     /**
-     * Returns custom JavaScript
+     * Returns custom JavaScript (camelCase expected by Nextcloud theming API)
      */
     public function getCustomJS() {
         return $this->getBaseUrl() . '/core/js/sepehr.js';

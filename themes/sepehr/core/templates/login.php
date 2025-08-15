@@ -870,7 +870,7 @@
         <div class="brand-section">
             <img src="<?php print_unescaped(OC::$WEBROOT); ?>/themes/sepehr/core/img/logo.svg" alt="<?php p($theme->getTitle()); ?>" class="brand-logo">
             <h1 class="brand-title"><?php p($theme->getTitle()); ?></h1>
-            <p class="brand-subtitle">پلتفرم ابری پیشرفته برای مدیریت و اشتراک‌گذاری فایل‌ها با امنیت بالا</p>
+            <p class="brand-subtitle">پلتفرم ابری پیشرفته برای مدیریت و اشتراک‌گذاری فایل‌ها با امنیت بالا<br><small style="font-size: 0.8em; opacity: 0.8;">توان گرفته از مرکز بهشتی نژاد</small></p>
 
             <div class="brand-features">
                 <div class="feature-item">
