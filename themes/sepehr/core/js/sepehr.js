@@ -51,10 +51,20 @@
 			return;
 		}
 
+		// Only show footer if #app-content-vue exists
+		const appContentVue = document.getElementById("app-content-vue");
+		if (!appContentVue) {
+			console.log("SEPEHR: No #app-content-vue found, footer not created");
+			return;
+		}
+
 		// Check if footer already exists
 		if (document.getElementById("sepehr-footer")) {
 			return;
 		}
+
+		// Add class to body for CSS fallback
+		document.body.classList.add("has-app-content-vue");
 
 		// Wait for layout to be ready
 		setTimeout(function () {
@@ -63,10 +73,18 @@
 			footer.id = "sepehr-footer";
 			footer.innerHTML = "<span>توان گرفته از مرکز بهشتی نژاد</span>";
 
-			// Add footer to body
-			document.body.appendChild(footer);
-
-			console.log("SEPEHR footer created successfully");
+			// Check if mobile view
+			const isMobile = window.innerWidth <= 768;
+			
+			if (isMobile) {
+				// Mobile: Add to body for fixed positioning
+				document.body.appendChild(footer);
+				console.log("SEPEHR footer created for mobile (fixed positioning) - using #app-content-vue");
+			} else {
+				// Desktop: Add to app-content-vue for relative positioning
+				appContentVue.appendChild(footer);
+				console.log("SEPEHR footer created for desktop (relative positioning) - using #app-content-vue");
+			}
 		}, 100);
 	}
 
