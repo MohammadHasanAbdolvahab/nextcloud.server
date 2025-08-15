@@ -794,15 +794,42 @@ div[id*="notification"],
   }
 }
 
-/* Focus Indicators */
-*:focus {
+/* Focus Indicators - More Selective */
+/* Remove global focus outline that causes green borders on popper items */
+/* *:focus {
+  outline: none;
+} */
+
+/* Apply focus only to interactive elements that need it */
+/* input:focus, 
+textarea:focus, 
+select:focus,
+button:focus:not(.action):not([role="menuitem"]):not([role="option"]),
+a:focus:not(.action):not([role="menuitem"]):not([role="option"]),
+[tabindex]:focus:not(.action):not([role="menuitem"]):not([role="option"]) {
   outline: 2px solid var(--sepehr-primary);
   outline-offset: 2px;
-}
+} */
 
-button:focus, a:focus {
+/* Better focus for buttons and links, but exclude popper/menu items */
+/* button:focus:not([role="menuitem"]):not([role="option"]):not(.action), 
+a:focus:not([role="menuitem"]):not([role="option"]):not(.action) {
   outline-offset: 4px;
-}
+} */
+
+/* NO focus outline for popper/dropdown/menu items to prevent green border */
+/* [role="menuitem"]:focus,
+[role="option"]:focus,
+.action:focus,
+.popper *:focus,
+.popover *:focus,
+.dropdown *:focus,
+.vue-popper *:focus,
+.menu-item:focus,
+.action-item:focus {
+  outline: none !important;
+  box-shadow: none !important;
+} */
 
 /* Print Styles Import */
 @media print {
