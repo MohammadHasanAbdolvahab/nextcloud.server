@@ -9,8 +9,12 @@
 (function () {
 	"use strict";
 
+	// Debug: Log immediately when script loads
+	console.log("🚀 SEPEHR Theme Script Loaded!");
+
 	// Theme initialization
 	document.addEventListener("DOMContentLoaded", function () {
+		console.log("🎯 SEPEHR Theme DOMContentLoaded fired");
 		initializeTheme();
 		createFooter();
 		setupFileSelection();

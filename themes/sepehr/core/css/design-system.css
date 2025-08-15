@@ -6,7 +6,7 @@
  * Modern Material Design 3 inspired components with Persian/RTL support
  */
 
-/* Import local Vazirmatn fonts - No internet required */
+/* Import the Vazirmatn font family */
 @import url('fonts.css');
 
 :root {

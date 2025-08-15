@@ -153,7 +153,9 @@ class OC_Theme {
      * Returns custom JavaScript (camelCase expected by Nextcloud theming API)
      */
     public function getCustomJS() {
-        return $this->getBaseUrl() . '/core/js/sepehr.js';
+        $jsPath = $this->getBaseUrl() . '/core/js/sepehr.js';
+        error_log("SEPEHR Theme: getCustomJS() called, returning: " . $jsPath);
+        return $jsPath;
     }
 
     /**

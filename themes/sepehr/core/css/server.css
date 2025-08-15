@@ -311,10 +311,18 @@ p {
   background: var(--md-surface-variant);
 }
 
+#header .header-start li a,
+#header .header-end button,
+#header .header-end .menutoggle{
+  opacity: 1 !important;
+}
+
+
 #header .header-start li a svg,
 #header .header-end button svg,
 #header .header-end .menutoggle svg{
   fill: var(--sepehr-surface) !important;
+  opacity: 1 !important;
 }
 
 #header .header-start li a:hover svg,
