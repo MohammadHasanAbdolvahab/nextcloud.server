@@ -621,8 +621,10 @@ tr.selected,
 }
 
 /* Toggle switch ON state - primary color */
-.checkbox-radio-switch-switch.checkbox-radio-switch--checked .material-design-icon,
-.checkbox-radio-switch--switch.checkbox-radio-switch--checked .material-design-icon,
+.checkbox-radio-switch-switch.checkbox-radio-switch--checked
+	.material-design-icon,
+.checkbox-radio-switch--switch.checkbox-radio-switch--checked
+	.material-design-icon,
 .checkbox-radio-switch--checked .toggle-switch-icon {
 	color: var(--sepehr-primary) !important; /* ON state - primary blue */
 }
@@ -640,13 +642,21 @@ tr.selected,
 .sepehr-dark-mode .checkbox-radio-switch-switch .material-design-icon,
 .sepehr-dark-mode .checkbox-radio-switch--switch .material-design-icon,
 .sepehr-dark-mode .toggle-switch-icon {
-	color: var(--color-text-maxcontrast) !important; /* OFF state in dark mode - muted gray */
+	color: var(
+		--color-text-maxcontrast
+	) !important; /* OFF state in dark mode - muted gray */
 }
 
-.sepehr-dark-mode .checkbox-radio-switch-switch.checkbox-radio-switch--checked .material-design-icon,
-.sepehr-dark-mode .checkbox-radio-switch--switch.checkbox-radio-switch--checked .material-design-icon,
+.sepehr-dark-mode
+	.checkbox-radio-switch-switch.checkbox-radio-switch--checked
+	.material-design-icon,
+.sepehr-dark-mode
+	.checkbox-radio-switch--switch.checkbox-radio-switch--checked
+	.material-design-icon,
 .sepehr-dark-mode .checkbox-radio-switch--checked .toggle-switch-icon {
-	color: var(--sepehr-primary) !important; /* ON state in dark mode - primary blue */
+	color: var(
+		--sepehr-primary
+	) !important; /* ON state in dark mode - primary blue */
 }
 
 /* File List Enhancements */
@@ -777,6 +787,14 @@ label {
 	.files-table td {
 		padding: var(--sepehr-space-3);
 	}
+
+	#header .header-end {
+		gap: var(--sepehr-space-2);
+	}
+
+	/* #header .header-end .header-menu {
+		max-width: 30px !important;
+	} */
 }
 
 @media (max-width: 480px) {
@@ -792,6 +810,14 @@ label {
 	.button {
 		padding: var(--sepehr-space-2) var(--sepehr-space-4);
 		font-size: var(--sepehr-text-xs);
+	}
+
+	#header .header-end {
+		gap: var(--sepehr-space-1);
+	}
+
+	#header .header-end .header-menu {
+		max-width: 35px !important;
 	}
 }
 
@@ -1145,6 +1171,10 @@ a:focus:not([role="menuitem"]):not([role="option"]):not(.action) {
 	}
 }
 
+#body-user .header-start .app-menu__list {
+	overflow: hidden;
+}
+
 /* Make app-content-vue relative positioned to contain the footer */
 #app-content-vue {
 	position: relative;
@@ -1225,7 +1255,7 @@ body:has(#app-content-vue) #sepehr-footer {
 	align-items: center;
 	padding: var(--sepehr-space-2);
 	justify-content: center;
-	width: var(--header-height);
+	width: var(--button-size);
 	height: var(--header-height);
 	border-radius: var(--sepehr-radius-md);
 	background: transparent;
@@ -1234,6 +1264,10 @@ body:has(#app-content-vue) #sepehr-footer {
 	transition: all 0.3s var(--sepehr-easing);
 	color: var(--color-main-text, #000);
 	z-index: 100;
+}
+
+.header-end .unified-search-menu > button {
+	width: var(--button-size) !important;
 }
 
 #sepehr-theme-toggle:hover {
@@ -1306,9 +1340,9 @@ body:has(#app-content-vue) #sepehr-footer {
 	color: var(--color-main-text) !important;
 }
 
-.sepehr-dark-mode #header {
-	background-color: var(--color-background-dark) !important;
-}
+/* .sepehr-dark-mode #header {
+	background-color: var(--color-primary-element) !important;
+} */
 
 /* Fix app-navigation background */
 .sepehr-dark-mode #app-navigation,
