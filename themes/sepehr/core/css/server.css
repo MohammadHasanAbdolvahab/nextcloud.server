@@ -958,7 +958,7 @@ body:has(#app-content-vue) #sepehr-footer {
 /* Dark mode footer text visibility */
 .sepehr-dark-mode #sepehr-footer,
 .sepehr-dark-mode #sepehr-footer * {
-    color: var(--sepehr-text) !important;
+    color: var(--sepehr-text-dark) !important;
 }
 
 /* ===== SEPEHR DARK/LIGHT MODE TOGGLE ===== */
@@ -1026,401 +1026,124 @@ body:has(#app-content-vue) #sepehr-footer {
     display: block;
 }
 
-/* ===== SEPEHR DARK MODE COLOR PALETTE ===== */
+/* ===== SEPEHR DARK MODE - CLEAN IMPLEMENTATION ===== */
 
 .sepehr-dark-mode {
-    --sepehr-primary: #4db6ac;
-    --sepehr-primary-variant: #26a69a;
-    --sepehr-secondary: #80cbc4;
-    --sepehr-secondary-variant: #4f9a94;
+    /* Dark backgrounds - comfortable, not too dark */
+    --color-main-background: #2a2a2a;
+    --color-background-dark: #242424;
+    --color-background-darker: #1e1e1e;
     
-    --sepehr-surface: #2e2e2e;
-    --sepehr-surface-variant: #3a3a3a;
-    --sepehr-surface-container: #353535;
-    --sepehr-surface-container-high: #404040;
+    /* Text colors for visibility */
+    --color-main-text: #ffffff;
+    --color-text-maxcontrast: #e0e0e0;
+    --color-text-light: #cccccc;
     
-    --sepehr-background: #212121;
-    --sepehr-background-variant: #282828;
-    
-    --sepehr-text: #f5f5f5;
-    --sepehr-text-secondary: #d0d0d0;
-    --sepehr-text-disabled: #9e9e9e;
-    
-    --sepehr-outline: #5a5a5a;
-    --sepehr-outline-variant: #454545;
-    
-    --sepehr-shadow: rgba(0, 0, 0, 0.5);
-    --sepehr-shadow-light: rgba(0, 0, 0, 0.3);
+    /* Surface colors */
+    --color-background-hover: rgba(255, 255, 255, 0.1);
+    --color-primary-element: #4db6ac;
+    --color-primary-element-light: #80cbc4;
 }
 
-/* Dark mode specific overrides */
+/* Main background areas */
 .sepehr-dark-mode body {
-    background: var(--sepehr-background);
-    color: var(--sepehr-text);
+    background-color: var(--color-main-background) !important;
+    color: var(--color-main-text) !important;
 }
 
 .sepehr-dark-mode #header {
-    background: var(--sepehr-surface);
-    border-bottom-color: var(--sepehr-outline);
+    background-color: var(--color-background-dark) !important;
 }
 
+/* Fix app-navigation background */
+.sepehr-dark-mode #app-navigation,
 .sepehr-dark-mode .app-navigation {
-    background: var(--sepehr-surface-variant);
-    border-right-color: var(--sepehr-outline);
+    background-color: var(--color-background-dark) !important;
 }
 
-.sepehr-dark-mode #app-content-vue {
-    background: var(--sepehr-background-variant);
+/* Fix dashboard background */
+.sepehr-dark-mode .dashboard,
+.sepehr-dark-mode #dashboard,
+.sepehr-dark-mode .dashboard-panels,
+.sepehr-dark-mode .app-dashboard {
+    background-color: var(--color-main-background) !important;
 }
 
-/* Dark mode sidebar and navigation text */
-.sepehr-dark-mode .app-navigation,
-.sepehr-dark-mode .app-navigation *,
-.sepehr-dark-mode .app-navigation-entry,
-.sepehr-dark-mode .app-navigation-entry a,
-.sepehr-dark-mode .app-navigation-entry-link,
-.sepehr-dark-mode .app-navigation-entry-utils,
-.sepehr-dark-mode .app-navigation-entry-menu,
-.sepehr-dark-mode #app-navigation ul li a,
-.sepehr-dark-mode .app-sidebar,
-.sepehr-dark-mode .app-sidebar *,
-.sepehr-dark-mode .app-sidebar-header,
-.sepehr-dark-mode .app-sidebar-tabs,
-.sepehr-dark-mode .sidebar {
-    color: var(--sepehr-text) !important;
-    background: var(--sepehr-surface-variant) !important;
+.sepehr-dark-mode #app-content-vue,
+.sepehr-dark-mode #app-content,
+.sepehr-dark-mode .content-wrapper {
+    background-color: var(--color-main-background) !important;
 }
 
-.sepehr-dark-mode .app-navigation-entry:hover,
-.sepehr-dark-mode .app-navigation-entry-link:hover {
-    background: var(--sepehr-surface-container-high) !important;
-    color: var(--sepehr-text) !important;
+/* Content text visibility */
+.sepehr-dark-mode .app-content,
+.sepehr-dark-mode #app-content,
+.sepehr-dark-mode .content,
+.sepehr-dark-mode p,
+.sepehr-dark-mode span,
+.sepehr-dark-mode div,
+.sepehr-dark-mode h1, .sepehr-dark-mode h2, .sepehr-dark-mode h3, 
+.sepehr-dark-mode h4, .sepehr-dark-mode h5, .sepehr-dark-mode h6 {
+    color: var(--color-main-text) !important;
 }
 
-/* Dark mode table styles */
+/* Table styling */
 .sepehr-dark-mode table,
-.sepehr-dark-mode table *,
 .sepehr-dark-mode #filestable,
-.sepehr-dark-mode #filestable *,
-.sepehr-dark-mode .files-table,
-.sepehr-dark-mode .files-table *,
-.sepehr-dark-mode tbody,
-.sepehr-dark-mode tbody *,
-.sepehr-dark-mode tr,
-.sepehr-dark-mode tr *,
-.sepehr-dark-mode td,
-.sepehr-dark-mode td *,
-.sepehr-dark-mode th,
-.sepehr-dark-mode th *,
+.sepehr-dark-mode .files-table {
+    background-color: var(--color-background-dark) !important;
+}
+
+.sepehr-dark-mode table td,
+.sepehr-dark-mode table th,
 .sepehr-dark-mode .name,
 .sepehr-dark-mode .nametext,
 .sepehr-dark-mode .filesize,
 .sepehr-dark-mode .date {
-    color: var(--sepehr-text) !important;
-    background: transparent !important;
+    color: var(--color-main-text) !important;
 }
 
-.sepehr-dark-mode table {
-    background: var(--sepehr-surface) !important;
-    border-color: var(--sepehr-outline) !important;
-}
-
-.sepehr-dark-mode tr:hover,
-.sepehr-dark-mode tr:hover * {
-    background: var(--sepehr-surface-container) !important;
-    color: var(--sepehr-text) !important;
-}
-
-.sepehr-dark-mode th {
-    background: var(--sepehr-surface-variant) !important;
-    border-color: var(--sepehr-outline) !important;
-}
-
-/* Dark mode general text elements */
-.sepehr-dark-mode,
-.sepehr-dark-mode *,
-.sepehr-dark-mode p,
-.sepehr-dark-mode span,
-.sepehr-dark-mode div,
-.sepehr-dark-mode a,
-.sepehr-dark-mode li,
-.sepehr-dark-mode label,
-.sepehr-dark-mode .app-content,
-.sepehr-dark-mode .app-content *,
-.sepehr-dark-mode #app-content,
-.sepehr-dark-mode #app-content *,
-.sepehr-dark-mode .content,
-.sepehr-dark-mode .content * {
-    color: var(--sepehr-text) !important;
-}
-
-/* Dark mode links */
-/* .sepehr-dark-mode a:not(.button) {
-    color: var(--sepehr-primary) !important;
-} */
-
-.sepehr-dark-mode a:not(.button):hover {
-    color: var(--sepehr-secondary) !important;
-}
-
-/* Dark mode input styles */
+/* Form elements */
 .sepehr-dark-mode input,
 .sepehr-dark-mode textarea,
 .sepehr-dark-mode select {
-    background: var(--sepehr-surface-container) !important;
-    border-color: var(--sepehr-outline) !important;
-    color: var(--sepehr-text) !important;
+    background-color: var(--color-background-dark) !important;
+    color: var(--color-main-text) !important;
+    border-color: #555 !important;
 }
 
-.sepehr-dark-mode input:focus,
-.sepehr-dark-mode textarea:focus,
-.sepehr-dark-mode select:focus {
-    border-color: var(--sepehr-primary) !important;
-    background: var(--sepehr-surface-container-high) !important;
+/* Poppers and dropdowns */
+.sepehr-dark-mode .popover,
+.sepehr-dark-mode .popper,
+.sepehr-dark-mode .popovermenu {
+    background-color: var(--color-background-dark) !important;
+    border: 1px solid #555 !important;
+    color: var(--color-main-text) !important;
 }
 
-/* Dark mode button styles */
-.sepehr-dark-mode button,
-.sepehr-dark-mode .button {
-    /* background: var(--sepehr-surface-container) !important; */
-    border-color: var(--sepehr-outline) !important;
-    color: var(--sepehr-text) !important;
+.sepehr-dark-mode .popover *,
+.sepehr-dark-mode .popper *,
+.sepehr-dark-mode .popovermenu * {
+    color: var(--color-main-text) !important;
 }
 
-.sepehr-dark-mode button:hover,
-.sepehr-dark-mode .button:hover {
-    background: var(--sepehr-surface-container-high) !important;
-}
-
-/* Dark mode card/panel styles */
-.sepehr-dark-mode .card,
-.sepehr-dark-mode .panel,
-.sepehr-dark-mode .modal-content {
-    background: var(--sepehr-surface) !important;
-    border-color: var(--sepehr-outline) !important;
-    color: var(--sepehr-text) !important;
-}
-
-/* Dark mode for main content areas */
-.sepehr-dark-mode #content,
-.sepehr-dark-mode #content *,
-.sepehr-dark-mode .content-wrapper,
-.sepehr-dark-mode .content-wrapper * {
-    background: var(--sepehr-background-variant) !important;
-    color: var(--sepehr-text) !important;
-}
-
-/* ===== DARK MODE LOGIN PAGE ===== */
-
-/* Login page dark mode styles */
-.sepehr-dark-mode #body-login,
+/* Login page */
+.sepehr-dark-mode#body-login,
 .sepehr-dark-mode.body-login,
 body.sepehr-dark-mode#body-login {
-    background: var(--sepehr-background) !important;
-    color: var(--sepehr-text) !important;
-}
-
-.sepehr-dark-mode #body-login *,
-.sepehr-dark-mode.body-login *,
-body.sepehr-dark-mode#body-login * {
-    color: var(--sepehr-text) !important;
+    background-color: var(--color-main-background) !important;
 }
 
 .sepehr-dark-mode #body-login .wrapper,
 .sepehr-dark-mode.body-login .wrapper,
 body.sepehr-dark-mode#body-login .wrapper {
-    background: var(--sepehr-surface) !important;
-    border: 1px solid var(--sepehr-outline) !important;
-    box-shadow: 0 4px 12px var(--sepehr-shadow) !important;
+    background-color: var(--color-background-dark) !important;
+    border: 1px solid #555 !important;
 }
 
-.sepehr-dark-mode #body-login fieldset,
-.sepehr-dark-mode.body-login fieldset,
-body.sepehr-dark-mode#body-login fieldset {
-    background: transparent !important;
-}
-
-.sepehr-dark-mode #body-login input[type="text"],
-.sepehr-dark-mode #body-login input[type="password"],
-.sepehr-dark-mode #body-login input[type="email"],
-.sepehr-dark-mode.body-login input[type="text"],
-.sepehr-dark-mode.body-login input[type="password"],
-.sepehr-dark-mode.body-login input[type="email"],
-body.sepehr-dark-mode#body-login input[type="text"],
-body.sepehr-dark-mode#body-login input[type="password"],
-body.sepehr-dark-mode#body-login input[type="email"] {
-    background: var(--sepehr-surface-container) !important;
-    border: 1px solid var(--sepehr-outline) !important;
-    color: var(--sepehr-text) !important;
-}
-
-.sepehr-dark-mode #body-login input[type="submit"],
-.sepehr-dark-mode #body-login .button,
-.sepehr-dark-mode.body-login input[type="submit"],
-.sepehr-dark-mode.body-login .button,
-body.sepehr-dark-mode#body-login input[type="submit"],
-body.sepehr-dark-mode#body-login .button {
-    background: var(--sepehr-primary) !important;
-    border-color: var(--sepehr-primary) !important;
-    color: white !important;
-}
-
-.sepehr-dark-mode #body-login .login-additional,
-.sepehr-dark-mode.body-login .login-additional,
-body.sepehr-dark-mode#body-login .login-additional {
-    color: var(--sepehr-text-secondary) !important;
-}
-
-.sepehr-dark-mode #body-login .login-additional a,
-.sepehr-dark-mode.body-login .login-additional a,
-body.sepehr-dark-mode#body-login .login-additional a {
-    color: var(--sepehr-primary) !important;
-}
-
-/* ===== GLOBAL DARK MODE TEXT VISIBILITY ===== */
-
-/* Base dark mode text - more specific selectors */
-.sepehr-dark-mode body,
-.sepehr-dark-mode main,
-.sepehr-dark-mode .app-content,
-.sepehr-dark-mode #app-content,
-.sepehr-dark-mode .content {
-    color: var(--sepehr-text) !important;
-}
-
-/* Navigation and sidebar text */
-.sepehr-dark-mode .app-navigation,
-.sepehr-dark-mode .app-navigation li,
-.sepehr-dark-mode .app-navigation a,
-.sepehr-dark-mode .app-sidebar,
-.sepehr-dark-mode .app-sidebar-header,
-.sepehr-dark-mode .sidebar {
-    color: var(--sepehr-text) !important;
-}
-
-/* Content area text */
-.sepehr-dark-mode #app-content p,
-.sepehr-dark-mode #app-content span,
-.sepehr-dark-mode #app-content div:not([class*="popover"]):not([class*="popper"]),
-.sepehr-dark-mode #app-content label,
-.sepehr-dark-mode .content p,
-.sepehr-dark-mode .content span,
-.sepehr-dark-mode .content div:not([class*="popover"]):not([class*="popper"]),
-.sepehr-dark-mode .content label {
-    color: var(--sepehr-text) !important;
-}
-
-/* Specific overrides for links */
-.sepehr-dark-mode a:not(.button) {
-    color: var(--sepehr-primary) !important;
-}
-
-.sepehr-dark-mode a:not(.button):hover {
-    color: var(--sepehr-secondary) !important;
-}
-
-/* Table text visibility with high contrast */
-.sepehr-dark-mode table,
-.sepehr-dark-mode table td,
-.sepehr-dark-mode table th,
-.sepehr-dark-mode #filestable td,
-.sepehr-dark-mode #filestable th,
-.sepehr-dark-mode .files-table td,
-.sepehr-dark-mode .files-table th {
-    color: var(--sepehr-text) !important;
-    background: transparent !important;
-}
-
-.sepehr-dark-mode .filesize,
-.sepehr-dark-mode .date,
-.sepehr-dark-mode .name,
-.sepehr-dark-mode .nametext {
-    color: var(--sepehr-text) !important;
-}
-
-/* Special cases for buttons that should have white text */
-.sepehr-dark-mode .primary,
-.sepehr-dark-mode .button-primary,
-.sepehr-dark-mode input[type="submit"],
-.sepehr-dark-mode button[type="submit"] {
-    color: white !important;
-}
-
-/* Ensure form elements are visible */
-.sepehr-dark-mode input,
-.sepehr-dark-mode textarea,
-.sepehr-dark-mode select {
-    color: var(--sepehr-text) !important;
-    background: var(--sepehr-surface-container) !important;
-}
-
-/* File list specific fixes */
-.sepehr-dark-mode .filesize,
-.sepehr-dark-mode .date,
-.sepehr-dark-mode .name,
-.sepehr-dark-mode .nametext {
-    color: var(--sepehr-text) !important;
-}
-
-/* ===== POPPER AND DROPDOWN FIXES ===== */
-
-/* User profile and other poppers - specific backgrounds */
-.sepehr-dark-mode .popover,
-.sepehr-dark-mode .popper,
-.sepehr-dark-mode .popovermenu {
-    background: var(--sepehr-surface) !important;
-    border: 1px solid var(--sepehr-outline) !important;
-    box-shadow: 0 4px 12px var(--sepehr-shadow) !important;
-}
-
-/* Popper text content - specific elements only */
-.sepehr-dark-mode .popover > *,
-.sepehr-dark-mode .popper > *,
-.sepehr-dark-mode .popovermenu > *,
-.sepehr-dark-mode .popover li,
-.sepehr-dark-mode .popper li,
-.sepehr-dark-mode .popovermenu li,
-.sepehr-dark-mode .popover a,
-.sepehr-dark-mode .popper a,
-.sepehr-dark-mode .popovermenu a,
-.sepehr-dark-mode .popover span:not([class*="icon"]),
-.sepehr-dark-mode .popper span:not([class*="icon"]),
-.sepehr-dark-mode .popovermenu span:not([class*="icon"]) {
-    color: var(--sepehr-text) !important;
-}
-
-/* Settings menu and user menu - specific */
-.sepehr-dark-mode #settings,
-.sepehr-dark-mode #expand {
-    background: var(--sepehr-surface) !important;
-    border: 1px solid var(--sepehr-outline) !important;
-}
-
-.sepehr-dark-mode #settings > *,
-.sepehr-dark-mode #expand > *,
-.sepehr-dark-mode .settings-section,
-.sepehr-dark-mode .user-menu-item {
-    color: var(--sepehr-text) !important;
-}
-
-/* Header poppers specifically */
-.sepehr-dark-mode #header .popovermenu,
-.sepehr-dark-mode .header-right .popovermenu {
-    background: var(--sepehr-surface) !important;
-    border: 1px solid var(--sepehr-outline) !important;
-}
-
-.sepehr-dark-mode #header .popovermenu > li,
-.sepehr-dark-mode #header .popovermenu > li > a,
-.sepehr-dark-mode .header-right .popovermenu > li,
-.sepehr-dark-mode .header-right .popovermenu > li > a {
-    color: var(--sepehr-text) !important;
-}
-
-/* Hover states for popper items */
-.sepehr-dark-mode .popovermenu li:hover,
-.sepehr-dark-mode .popover li:hover,
-.sepehr-dark-mode .popper li:hover {
-    background: var(--sepehr-surface-container) !important;
+/* Footer visibility */
+.sepehr-dark-mode #sepehr-footer,
+.sepehr-dark-mode #sepehr-footer * {
+    color: var(--color-main-text) !important;
 }
 
