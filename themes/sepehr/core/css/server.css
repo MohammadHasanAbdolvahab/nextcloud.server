@@ -834,7 +834,7 @@ label {
 		right: 15px !important; /* RTL: position on right */
 		left: auto !important;
 		z-index: 1200 !important;
-		background: transparent !important; /* Remove background */
+		/* background: transparent !important;  */
 		color: var(--sepehr-primary) !important; /* Primary color icon */
 		border: none !important;
 		border-radius: 4px !important;
@@ -848,7 +848,7 @@ label {
 
 	/* Add hamburger menu icon */
 	#body-settings #app-navigation-toggle::before {
-		content: "";
+		/* content: ""; */
 		display: block !important;
 		width: 20px !important;
 		height: 20px !important;
@@ -860,22 +860,9 @@ label {
 		margin: auto !important;
 	}
 
-	/* Dark mode icon color */
-	.sepehr-dark-mode #body-settings #app-navigation-toggle::before {
-		background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23006cbf" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>') !important;
-	}
-
-	/* Dark mode toggle button */
-	.sepehr-dark-mode #body-settings #app-navigation-toggle {
-		filter: brightness(0) invert(1) !important;
-	}
-
 	#body-settings #app-navigation-toggle:hover {
-		background: rgba(
-			var(--sepehr-primary-rgb),
-			0.1
-		) !important; /* Subtle hover */
 		color: var(--sepehr-primary) !important;
+		box-shadow: var(--sepehr-shadow-lg) !important;
 	}
 
 	/* Force RTL text direction for content */
@@ -1434,4 +1421,13 @@ body.sepehr-dark-mode#body-login .wrapper {
 .sepehr-dark-mode .notification-popup .notification-item:hover,
 .sepehr-dark-mode .notification-dropdown .notification-item:hover {
 	background-color: var(--color-background-hover) !important;
+}
+
+/* Dark mode toggle button */
+.sepehr-dark-mode #body-settings #app-navigation-toggle {
+	filter: brightness(0) invert(1) !important;
+}
+
+select {
+	padding: 0.5rem !important;
 }
