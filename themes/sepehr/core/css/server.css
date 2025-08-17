@@ -1069,6 +1069,19 @@ body:has(#app-content-vue) #sepehr-footer {
     background-color: var(--color-main-background) !important;
 }
 
+/* Fix body-settings content background */
+.sepehr-dark-mode#body-settings,
+.sepehr-dark-mode.body-settings,
+body.sepehr-dark-mode#body-settings {
+    background-color: var(--color-main-background) !important;
+}
+
+.sepehr-dark-mode#body-settings .content,
+.sepehr-dark-mode.body-settings .content,
+body.sepehr-dark-mode#body-settings .content {
+    background-color: var(--color-main-background) !important;
+}
+
 .sepehr-dark-mode #app-content-vue,
 .sepehr-dark-mode #app-content,
 .sepehr-dark-mode .content-wrapper {
@@ -1101,6 +1114,31 @@ body:has(#app-content-vue) #sepehr-footer {
 .sepehr-dark-mode .filesize,
 .sepehr-dark-mode .date {
     color: var(--color-main-text) !important;
+}
+
+/* Fix files-list__thead text color */
+.sepehr-dark-mode .files-list__thead,
+.sepehr-dark-mode .files-list__thead *,
+.sepehr-dark-mode .files-list__thead th,
+.sepehr-dark-mode .files-list__thead span {
+    color: var(--color-main-text) !important;
+}
+
+.sepehr-dark-mode .files-list__tfoot {
+    background-color: var(--color-primary-element) !important;
+}
+
+.sepehr-dark-mode .files-list__thead {
+    background-color: var(--color-primary-element) !important;
+}
+
+/* DON'T change material design icons - preserve original colors */
+.sepehr-dark-mode .material-design-icon,
+.sepehr-dark-mode .folder-icon,
+.sepehr-dark-mode .file-icon,
+.sepehr-dark-mode svg.material-design-icon {
+    color: var(--color-primary-element) !important;
+    fill: var(--color-primary-element) !important;
 }
 
 /* Form elements */
@@ -1141,9 +1179,26 @@ body.sepehr-dark-mode#body-login .wrapper {
     border: 1px solid #555 !important;
 }
 
-/* Footer visibility */
+/* Footer visibility - ensure readable text */
 .sepehr-dark-mode #sepehr-footer,
-.sepehr-dark-mode #sepehr-footer * {
+.sepehr-dark-mode #sepehr-footer *,
+.sepehr-dark-mode #sepehr-footer span {
     color: var(--color-main-text) !important;
+    background: transparent !important;
+    text-shadow: none !important;
 }
 
+.sepehr-dark-mode #content {
+    background-color: var(--color-background-dark) !important;
+}
+
+.sepehr-dark-mode .files-list__thead > tr:hover{
+    background-color: var(--color-primary-element) !important;
+}
+
+.sepehr-dark-mode #app-navigation ul > li > a > img,
+.sepehr-dark-mode .app-navigation-entry-icon {
+  /* filter: invert(23%) sepia(9%) saturate(1094%) hue-rotate(133deg) brightness(89%) contrast(85%) !important; */
+  filter: brightness(0) invert(1) !important;
+
+}
