@@ -1084,7 +1084,8 @@ body.sepehr-dark-mode#body-settings .content {
 
 .sepehr-dark-mode #app-content-vue,
 .sepehr-dark-mode #app-content,
-.sepehr-dark-mode .content-wrapper {
+.sepehr-dark-mode .content-wrapper,
+.sepehr-dark-mode .app-content-wrapper {
     background-color: var(--color-main-background) !important;
 }
 
