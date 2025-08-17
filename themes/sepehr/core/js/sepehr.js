@@ -53,6 +53,7 @@
 		setupFormEnhancements();
 		setupNotifications();
 		fixTableHeaderOverlap();
+		initializeSettingsNavigation(); // Add RTL settings navigation
 	});
 
 	/**
@@ -666,6 +667,100 @@
 	window.addEventListener("hashchange", function () {
 		setTimeout(checkForThemeToggle, 500);
 	});
+
+	/**
+	 * RTL Settings Navigation Handler
+	 * Fixes navigation toggle and close functionality for body-settings
+	 */
+	function initializeSettingsNavigation() {
+		// Only run on settings pages
+		if (!document.body.id || document.body.id !== 'body-settings') {
+			return;
+		}
+		
+		console.log("SEPEHR Theme: Initializing RTL settings navigation");
+		
+		// Override existing navigation toggle behavior
+		function handleNavigationToggle() {
+			const body = document.body;
+			const navigation = document.querySelector('#app-navigation');
+			
+			if (!navigation) return;
+			
+			// Toggle the snapjs-left class
+			if (body.classList.contains('snapjs-left')) {
+				// Close navigation
+				body.classList.remove('snapjs-left');
+				navigation.classList.remove('mobile-open');
+			} else {
+				// Open navigation
+				body.classList.add('snapjs-left');
+				navigation.classList.add('mobile-open');
+			}
+		}
+		
+		// Handle navigation toggle button clicks
+		document.addEventListener('click', function(e) {
+			const toggleButton = e.target.closest('#app-navigation-toggle');
+			if (toggleButton) {
+				e.preventDefault();
+				e.stopPropagation();
+				handleNavigationToggle();
+			}
+		});
+		
+		// Handle backdrop clicks to close navigation
+		document.addEventListener('click', function(e) {
+			const body = document.body;
+			const navigation = document.querySelector('#app-navigation');
+			const clickedInsideNav = e.target.closest('#app-navigation');
+			const clickedToggle = e.target.closest('#app-navigation-toggle');
+			
+			// Close if clicked outside navigation when nav is open
+			// Only check if navigation is open and click is not inside nav or on toggle
+			if (body.classList.contains('snapjs-left') && !clickedInsideNav && !clickedToggle) {
+				// Check if click is on content area (not on the navigation side)
+				const clickX = e.clientX;
+				const windowWidth = window.innerWidth;
+				
+				// If clicking on left side of screen (away from right-side navigation)
+				if (clickX < windowWidth - 300) {
+					body.classList.remove('snapjs-left');
+					if (navigation) {
+						navigation.classList.remove('mobile-open');
+					}
+				}
+			}
+		});
+		
+		// Handle escape key to close navigation
+		document.addEventListener('keydown', function(e) {
+			if (e.key === 'Escape') {
+				const body = document.body;
+				const navigation = document.querySelector('#app-navigation');
+				
+				if (body.classList.contains('snapjs-left')) {
+					body.classList.remove('snapjs-left');
+					if (navigation) {
+						navigation.classList.remove('mobile-open');
+					}
+				}
+			}
+		});
+		
+		// Handle window resize - close navigation on larger screens
+		window.addEventListener('resize', function() {
+			if (window.innerWidth >= 1024) {
+				const body = document.body;
+				const navigation = document.querySelector('#app-navigation');
+				
+				body.classList.remove('snapjs-left');
+				if (navigation) {
+					navigation.classList.remove('mobile-open');
+				}
+			}
+		});
+	}
 
 	console.log(
 		"SEPEHR Material Design Theme script loaded with dark mode support"
