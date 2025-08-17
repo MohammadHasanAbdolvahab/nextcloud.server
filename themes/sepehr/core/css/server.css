@@ -541,11 +541,20 @@ tr.selected,
 }
 
 /* Custom Material Checkboxes */
+/* Exclude toggle switches from checkbox styling */
 .checkbox-material {
 	position: relative;
 	display: inline-block;
 	width: 20px;
 	height: 20px;
+}
+
+/* Don't apply checkbox styles to toggle switches */
+.checkbox-radio-switch-switch .checkbox-material,
+.checkbox-radio-switch--switch .checkbox-material,
+[class*="toggle"] .checkbox-material,
+[class*="switch"] .checkbox-material {
+	display: none !important;
 }
 
 .checkbox-material input {
@@ -590,6 +599,54 @@ tr.selected,
 
 .checkbox-material input:checked + .checkmark::after {
 	opacity: 1;
+}
+
+/* ===== PRESERVE NEXTCLOUD TOGGLE SWITCHES ===== */
+/* Ensure toggle switches keep their native appearance */
+.checkbox-radio-switch-switch,
+.checkbox-radio-switch--switch,
+.checkbox-radio-switch-switch .checkbox-radio-switch__content,
+.checkbox-radio-switch--switch .checkbox-radio-switch__content {
+	display: flex !important;
+	align-items: center !important;
+}
+
+/* Toggle switch icon styling */
+.checkbox-radio-switch-switch .material-design-icon,
+.checkbox-radio-switch--switch .material-design-icon,
+.toggle-switch-icon {
+	color: var(--sepehr-border) !important; /* Default OFF state - gray */
+	display: inline-block !important;
+	transition: color 0.3s ease !important;
+}
+
+/* Toggle switch ON state - primary color */
+.checkbox-radio-switch-switch.checkbox-radio-switch--checked .material-design-icon,
+.checkbox-radio-switch--switch.checkbox-radio-switch--checked .material-design-icon,
+.checkbox-radio-switch--checked .toggle-switch-icon {
+	color: var(--sepehr-primary) !important; /* ON state - primary blue */
+}
+
+/* Toggle switch text */
+.checkbox-radio-switch-switch .checkbox-radio-switch__text,
+.checkbox-radio-switch--switch .checkbox-radio-switch__text {
+	margin-right: var(--sepehr-space-2) !important;
+	margin-left: 0 !important;
+	direction: rtl !important;
+	text-align: right !important;
+}
+
+/* Dark mode toggle switches */
+.sepehr-dark-mode .checkbox-radio-switch-switch .material-design-icon,
+.sepehr-dark-mode .checkbox-radio-switch--switch .material-design-icon,
+.sepehr-dark-mode .toggle-switch-icon {
+	color: var(--color-text-maxcontrast) !important; /* OFF state in dark mode - muted gray */
+}
+
+.sepehr-dark-mode .checkbox-radio-switch-switch.checkbox-radio-switch--checked .material-design-icon,
+.sepehr-dark-mode .checkbox-radio-switch--switch.checkbox-radio-switch--checked .material-design-icon,
+.sepehr-dark-mode .checkbox-radio-switch--checked .toggle-switch-icon {
+	color: var(--sepehr-primary) !important; /* ON state in dark mode - primary blue */
 }
 
 /* File List Enhancements */
