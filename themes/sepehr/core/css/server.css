@@ -727,12 +727,12 @@ label {
 
 /* Notifications */
 .notification {
-  position: fixed;
+  position: static !important;
   top: var(--sepehr-space-6);
   right: var(--sepehr-space-6);
   background: var(--sepehr-surface);
   border: 1px solid var(--sepehr-border);
-  border-radius: var(--sepehr-radius-lg);
+  /* border-radius: var(--sepehr-radius-lg); */
   padding: var(--sepehr-space-4) var(--sepehr-space-6);
   box-shadow: var(--sepehr-shadow-lg);
   z-index: var(--sepehr-z-50);
@@ -783,6 +783,38 @@ div[id*="notification"],
 
 .notification.warning {
   border-left: 4px solid #FF9800;
+}
+
+/* ===== NOTIFICATION PANEL FIXES ===== */
+
+/* Fix 1: Dark mode notification panel background */
+.sepehr-dark-mode .header-menu.popovermenu,
+.sepehr-dark-mode .notification-popup,
+.sepehr-dark-mode .notification-dropdown {
+  background-color: var(--color-main-background) !important;
+  border-color: var(--color-border) !important;
+  color: var(--color-main-text) !important;
+}
+
+/* Fix 2: Notification list items - prevent overlap and proper display */
+.header-menu.popovermenu .notification-item,
+.notification-popup .notification-item,
+.notification-dropdown .notification-item {
+  display: block !important;
+  position: relative !important;
+  margin-bottom: 0 !important;
+  padding: 12px 16px !important;
+  border-bottom: 1px solid var(--sepehr-border) !important;
+  background: transparent !important;
+  clear: both !important;
+  overflow: visible !important;
+  z-index: auto !important;
+}
+
+.header-menu.popovermenu .notification-item:last-child,
+.notification-popup .notification-item:last-child,
+.notification-dropdown .notification-item:last-child {
+  border-bottom: none !important;
 }
 
 /* Accessibility */
@@ -1202,4 +1234,23 @@ body.sepehr-dark-mode#body-login .wrapper {
   /* filter: invert(23%) sepia(9%) saturate(1094%) hue-rotate(133deg) brightness(89%) contrast(85%) !important; */
   filter: brightness(0) invert(1) !important;
 
+}
+
+/* Dark mode notification items */
+.sepehr-dark-mode .header-menu.popovermenu .notification-item,
+.sepehr-dark-mode .notification-popup .notification-item,
+.sepehr-dark-mode .notification-dropdown .notification-item {
+  border-bottom-color: var(--color-border) !important;
+  color: var(--color-main-text) !important;
+}
+
+
+.sepehr-dark-mode .notification-container .notification-wrapper .notification {
+    background-color: var(--color-primary-element) !important;
+}
+
+.sepehr-dark-mode .header-menu.popovermenu .notification-item:hover,
+.sepehr-dark-mode .notification-popup .notification-item:hover,
+.sepehr-dark-mode .notification-dropdown .notification-item:hover {
+  background-color: var(--color-background-hover) !important;
 }
