@@ -189,7 +189,7 @@
 			// Create footer element
 			const footer = document.createElement("footer");
 			footer.id = "sepehr-footer";
-			footer.innerHTML = "<span>توان گرفته از مرکز بهشتی نژاد</span>";
+			footer.innerHTML = "<span>توان گرفته از مرکز تحقیقاتی بهشتی نژاد</span>";
 
 			// Check if mobile view
 			const isMobile = window.innerWidth <= 768;
