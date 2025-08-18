@@ -760,67 +760,6 @@ label {
 	gap: var(--sepehr-space-3);
 }
 
-/* Responsive Design - Updated for header-only layout */
-@media (max-width: 768px) {
-	#header {
-		padding: var(--sepehr-space-3) var(--sepehr-space-4);
-	}
-
-	#header-start__appmenu {
-		flex-wrap: wrap;
-		gap: var(--sepehr-space-1);
-	}
-
-	#header-start__appmenu .header-appmenu-entry {
-		padding: var(--sepehr-space-1) var(--sepehr-space-2);
-		font-size: var(--sepehr-text-sm);
-	}
-
-	table,
-	.files-table {
-		font-size: var(--sepehr-text-sm);
-	}
-
-	th,
-	td,
-	.files-table th,
-	.files-table td {
-		padding: var(--sepehr-space-3);
-	}
-
-	#header .header-end {
-		gap: var(--sepehr-space-2);
-	}
-
-	/* #header .header-end .header-menu {
-		max-width: 30px !important;
-	} */
-}
-
-@media (max-width: 480px) {
-	#header {
-		padding: var(--sepehr-space-2) var(--sepehr-space-3);
-	}
-
-	#header-start__appmenu .header-appmenu-entry {
-		padding: var(--sepehr-space-1);
-		font-size: var(--sepehr-text-xs);
-	}
-
-	.button {
-		padding: var(--sepehr-space-2) var(--sepehr-space-4);
-		font-size: var(--sepehr-text-xs);
-	}
-
-	#header .header-end {
-		gap: var(--sepehr-space-1);
-	}
-
-	#header .header-end .header-menu {
-		max-width: 35px !important;
-	}
-}
-
 /* Loading States */
 .loading {
 	opacity: 0.6;
@@ -865,103 +804,6 @@ label {
 #body-settings #app-navigation {
 	transform: none !important; /* Remove JavaScript-applied transforms */
 	position: relative !important;
-}
-
-/* Mobile-specific fixes */
-@media (max-width: 1024px) {
-	/* Force proper mobile layout for settings - RTL navigation from right */
-	#body-settings #app-navigation {
-		position: fixed !important;
-		top: 50px !important;
-		right: -300px !important; /* RTL: Hide on right side */
-		left: auto !important;
-		width: 300px !important;
-		height: calc(100vh - 50px) !important;
-		z-index: 1100 !important;
-		transform: none !important; /* Override any JS transforms */
-		transition: right 0.3s ease !important; /* RTL: animate right property */
-		/* background: var(--sepehr-surface) !important; */
-		box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1) !important; /* RTL: shadow to left */
-	}
-
-	/* When navigation is open (using snapjs-left class) - but slide from right */
-	#body-settings.snapjs-left #app-navigation,
-	#body-settings #app-navigation.mobile-open {
-		right: 0 !important; /* RTL: Show on right side */
-		left: auto !important;
-		transform: none !important;
-	}
-
-	/* Content area - no shifting when navigation opens */
-	#body-settings.snapjs-left #app-content,
-	#body-settings #app-content.shifted,
-	#body-settings #app-content {
-		transform: none !important; /* Remove the shift */
-		margin-left: 0 !important;
-		margin-right: 0 !important;
-		position: relative !important;
-		z-index: 1 !important;
-		width: 100% !important;
-		pointer-events: auto !important; /* Ensure content is clickable */
-	}
-
-	/* Remove problematic backdrop - make content clickable */
-	#body-settings.snapjs-left::before {
-		display: none !important; /* Remove backdrop that blocks clicks */
-	}
-
-	/* Navigation toggle button on right side */
-	#body-settings #app-navigation-toggle {
-		position: fixed !important;
-		top: 60px !important;
-		right: 15px !important; /* RTL: position on right */
-		left: auto !important;
-		z-index: 1200 !important;
-		/* background: transparent !important;  */
-		color: var(--sepehr-primary) !important; /* Primary color icon */
-		border: none !important;
-		border-radius: 4px !important;
-		padding: 8px 12px !important;
-		cursor: pointer !important;
-		display: block !important;
-		box-shadow: none !important; /* Remove shadow */
-		width: 40px !important;
-		height: 40px !important;
-	}
-
-	/* Add hamburger menu icon */
-	#body-settings #app-navigation-toggle::before {
-		/* content: ""; */
-		display: block !important;
-		width: 20px !important;
-		height: 20px !important;
-		background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23006cbf" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>') !important;
-		background-repeat: no-repeat !important;
-		background-position: center !important;
-		background-size: 20px 20px !important;
-		opacity: 1 !important;
-		margin: auto !important;
-	}
-
-	#body-settings #app-navigation-toggle:hover {
-		color: var(--sepehr-primary) !important;
-		box-shadow: var(--sepehr-shadow-lg) !important;
-	}
-
-	/* Force RTL text direction for content */
-	#body-settings #app-content,
-	#body-settings #app-content * {
-		direction: rtl !important;
-		text-align: right !important;
-	}
-
-	/* But keep form elements and buttons properly aligned */
-	#body-settings input,
-	#body-settings select,
-	#body-settings button,
-	#body-settings .button {
-		direction: ltr !important;
-	}
 }
 
 /* Notifications */
@@ -1158,19 +1000,6 @@ a:focus:not([role="menuitem"]):not([role="option"]):not(.action) {
 	display: none;
 }
 
-/* Mobile: Change to fixed positioning for full viewport coverage */
-@media (max-width: 768px) {
-	#sepehr-footer {
-		position: fixed !important;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		font-size: 10px;
-		padding: 6px 15px;
-		z-index: 2000;
-	}
-}
-
 #body-user .header-start .app-menu__list {
 	overflow: hidden;
 }
@@ -1207,24 +1036,6 @@ body:has(#app-content-vue) #sepehr-footer {
 	padding-bottom: 0 !important;
 }
 
-/* Mobile: Change padding behavior since footer becomes fixed */
-@media (max-width: 768px) {
-	/* Mobile: Add padding to body since footer is fixed and covers viewport */
-	body {
-		padding-bottom: 35px !important;
-	}
-
-	/* Mobile: Reset app-content-vue padding since footer is no longer relative */
-	#app-content-vue {
-		padding-bottom: 0 !important;
-	}
-
-	/* Ensure navigation remains unaffected */
-	#app-navigation {
-		padding-bottom: 0 !important;
-	}
-}
-
 /* Remove the generic file app hiding rules since footer only shows in app-content-vue now */
 
 /* Dark mode support - Footer inside app-content-vue */
@@ -1255,7 +1066,7 @@ body:has(#app-content-vue) #sepehr-footer {
 	align-items: center;
 	padding: var(--sepehr-space-2);
 	justify-content: center;
-	width: var(--button-size);
+	width: var(--header-height);
 	height: var(--header-height);
 	border-radius: var(--sepehr-radius-md);
 	background: transparent;
@@ -1521,4 +1332,195 @@ body.sepehr-dark-mode#body-login .wrapper {
 
 select {
 	padding: 0.5rem !important;
+}
+
+@media (max-width: 480px) {
+	#header {
+		padding: var(--sepehr-space-2) var(--sepehr-space-3);
+	}
+
+	#header-start__appmenu .header-appmenu-entry {
+		padding: var(--sepehr-space-1);
+		font-size: var(--sepehr-text-xs);
+	}
+
+	.button {
+		padding: var(--sepehr-space-2) var(--sepehr-space-4);
+		font-size: var(--sepehr-text-xs);
+	}
+
+	#header .header-end {
+		gap: var(--sepehr-space-1);
+	}
+
+	#header .header-end .header-menu {
+		max-width: 35px !important;
+	}
+
+	#sepehr-theme-toggle {
+		width: var(--button-size);
+	}
+}
+
+/* Responsive Design - Updated for header-only layout */
+@media (max-width: 768px) {
+	#header {
+		padding: var(--sepehr-space-3) var(--sepehr-space-4);
+	}
+
+	#header-start__appmenu {
+		flex-wrap: wrap;
+		gap: var(--sepehr-space-1);
+	}
+
+	#header-start__appmenu .header-appmenu-entry {
+		padding: var(--sepehr-space-1) var(--sepehr-space-2);
+		font-size: var(--sepehr-text-sm);
+	}
+
+	table,
+	.files-table {
+		font-size: var(--sepehr-text-sm);
+	}
+
+	th,
+	td,
+	.files-table th,
+	.files-table td {
+		padding: var(--sepehr-space-3);
+	}
+
+	#header .header-end {
+		gap: var(--sepehr-space-2);
+	}
+
+	/* #header .header-end .header-menu {
+		max-width: 30px !important;
+	} */
+
+	/* Mobile: Add padding to body since footer is fixed and covers viewport */
+	body {
+		padding-bottom: 35px !important;
+	}
+
+	/* Mobile: Reset app-content-vue padding since footer is no longer relative */
+	#app-content-vue {
+		padding-bottom: 0 !important;
+	}
+
+	/* Ensure navigation remains unaffected */
+	#app-navigation {
+		padding-bottom: 0 !important;
+	}
+
+	#sepehr-theme-toggle {
+		width: var(--button-size);
+	}
+
+	#sepehr-footer {
+		position: fixed !important;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		font-size: 10px;
+		padding: 6px 15px;
+		z-index: 2000;
+	}
+}
+
+/* Mobile-specific fixes */
+@media (max-width: 1024px) {
+	/* Force proper mobile layout for settings - RTL navigation from right */
+	#body-settings #app-navigation {
+		position: fixed !important;
+		top: 50px !important;
+		right: -300px !important; /* RTL: Hide on right side */
+		left: auto !important;
+		width: 300px !important;
+		height: calc(100vh - 50px) !important;
+		z-index: 1100 !important;
+		transform: none !important; /* Override any JS transforms */
+		transition: right 0.3s ease !important; /* RTL: animate right property */
+		/* background: var(--sepehr-surface) !important; */
+		box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1) !important; /* RTL: shadow to left */
+	}
+
+	/* When navigation is open (using snapjs-left class) - but slide from right */
+	#body-settings.snapjs-left #app-navigation,
+	#body-settings #app-navigation.mobile-open {
+		right: 0 !important; /* RTL: Show on right side */
+		left: auto !important;
+		transform: none !important;
+	}
+
+	/* Content area - no shifting when navigation opens */
+	#body-settings.snapjs-left #app-content,
+	#body-settings #app-content.shifted,
+	#body-settings #app-content {
+		transform: none !important; /* Remove the shift */
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+		position: relative !important;
+		z-index: 1 !important;
+		width: 100% !important;
+		pointer-events: auto !important; /* Ensure content is clickable */
+	}
+
+	/* Remove problematic backdrop - make content clickable */
+	#body-settings.snapjs-left::before {
+		display: none !important; /* Remove backdrop that blocks clicks */
+	}
+
+	/* Navigation toggle button on right side */
+	#body-settings #app-navigation-toggle {
+		position: fixed !important;
+		top: 60px !important;
+		right: 15px !important; /* RTL: position on right */
+		left: auto !important;
+		z-index: 1200 !important;
+		/* background: transparent !important;  */
+		color: var(--sepehr-primary) !important; /* Primary color icon */
+		border: none !important;
+		border-radius: 4px !important;
+		padding: 8px 12px !important;
+		cursor: pointer !important;
+		display: block !important;
+		box-shadow: none !important; /* Remove shadow */
+		width: 40px !important;
+		height: 40px !important;
+	}
+
+	/* Add hamburger menu icon */
+	#body-settings #app-navigation-toggle::before {
+		/* content: ""; */
+		display: block !important;
+		width: 20px !important;
+		height: 20px !important;
+		background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23006cbf" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>') !important;
+		background-repeat: no-repeat !important;
+		background-position: center !important;
+		background-size: 20px 20px !important;
+		opacity: 1 !important;
+		margin: auto !important;
+	}
+
+	#body-settings #app-navigation-toggle:hover {
+		color: var(--sepehr-primary) !important;
+		box-shadow: var(--sepehr-shadow-lg) !important;
+	}
+
+	/* Force RTL text direction for content */
+	#body-settings #app-content,
+	#body-settings #app-content * {
+		direction: rtl !important;
+		text-align: right !important;
+	}
+
+	/* But keep form elements and buttons properly aligned */
+	#body-settings input,
+	#body-settings select,
+	#body-settings button,
+	#body-settings .button {
+		direction: ltr !important;
+	}
 }
